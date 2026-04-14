@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Party | Settlement Protocol</title>
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&family=Montserrat:wght@300;400;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root { --gold: #D4AF37; --dark: #0a0a0a; }
+        *, *::before, *::after { box-sizing: border-box; }
+        body { margin: 0; padding: 0; background-color: #000; font-family: 'Lexend', sans-serif; color: #f2f2f2; line-height: 1.8; overflow-x: hidden; }
+        .container { max-width: 750px; margin: 0 auto; padding: 20px; }
+        .hidden { display: none !important; }
+        
+        .shimmer {
+            background: linear-gradient(to right, #D4AF37 0%, #ffffff 20%, #D4AF37 40%, #D4AF37 100%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+        @keyframes shine { to { background-position: 200% center; } }
+        .header-font { font-family: 'Canter Bold', sans-serif; text-transform: uppercase; letter-spacing: 5px; }
+
+        header { text-align: center; padding: 40px 0 20px 0; }
+        .logo-text { font-size: 72px; line-height: 1; }
+        .manifest-slider-wrap { display: flex; gap: 15px; overflow-x: auto; padding: 30px 0 10px 0; scrollbar-width: none; -webkit-overflow-scrolling: touch; }
+        .manifest-slider-wrap::-webkit-scrollbar { display: none; }
+        .manifest-box { flex: 0 0 200px; background: #0a0a0a; border: 1px solid #1a1a1a; padding: 25px 15px; text-align: center; transition: 0.4s; cursor: pointer; }
+        .manifest-box.active { border-color: var(--gold); background: #111; transform: scale(1.05); }
+        .m-price { font-family: 'Canter Bold', sans-serif; font-size: 2.2rem; color: var(--gold); }
+        .m-desc { font-family: 'Montserrat'; font-size: 9px; text-transform: uppercase; letter-spacing: 2px; color: #666; margin-top: 10px; }
+        
+        .section-title { color: var(--gold); font-family: 'Montserrat'; font-weight: 800; text-transform: uppercase; letter-spacing: 3px; margin: 50px 0 20px 0; display: block; font-size: 11px; border-left: 3px solid var(--gold); padding-left: 15px; }
+        .protocol-card { background: #0a0a0a; border: 1px solid #1a1a1a; padding: 30px; margin-bottom: 25px; }
+        
+        .timeline-box { border-left: 1px solid #333; padding-left: 20px; margin: 20px 0; }
+        .timeline-item { margin-bottom: 25px; font-size: 14px; position: relative; }
+        .timeline-item::before { content: ''; position: absolute; left: -24px; top: 5px; width: 8px; height: 8px; background: var(--gold); border-radius: 50%; }
+        .timeline-item strong { color: var(--gold); display: block; text-transform: uppercase; font-size: 11px; letter-spacing: 2px; margin-bottom: 5px; }
+
+        .bank-label { color: #666; font-size: 10px; text-transform: uppercase; letter-spacing: 1.5px; display: block; margin-bottom: 4px; }
+        .bank-value { color: #fff; font-size: 15px; font-weight: 400; display: block; word-break: break-all; }
+
+        .ref-box { background: #000; border: 1px dashed var(--gold); padding: 20px; text-align: center; margin: 20px 0; }
+        .ref-code { color: var(--gold); font-size: 24px; font-weight: 600; letter-spacing: 2px; }
+        
+        /* REFERENCE KEY */
+        .narration-key { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 15px 0; padding: 15px; background: #050505; border: 1px solid #111; font-size: 10px; color: #777; letter-spacing: 1px; text-transform: uppercase; }
+        .key-item span { color: var(--gold); font-weight: 600; margin-right: 5px; }
+
+        .input-group { margin-bottom: 20px; }
+        .ref-input { width: 100%; background: #000; border: 1px solid #333; color: var(--gold); padding: 15px; font-family: 'Lexend'; font-size: 14px; border-radius: 0; }
+
+        .upload-area { border: 2px dashed #333; padding: 40px; text-align: center; margin-top: 20px; cursor: pointer; transition: 0.3s; }
+        .upload-area:hover { border-color: var(--gold); background: #111; }
+        
+        .cta-button { display: block; text-align: center; padding: 25px; background: var(--gold); color: #000 !important; text-decoration: none; font-family: 'Montserrat'; font-weight: 800; text-transform: uppercase; letter-spacing: 4px; font-size: 13px; margin: 40px 0; transition: 0.3s; border: none; cursor: pointer; width: 100%; }
+
+        .concierge-link { display: block; text-align: center; color: var(--gold); font-size: 11px; text-decoration: none; letter-spacing: 2px; margin-top: 30px; text-transform: uppercase; font-weight: 600; animation: pulse-gold 2.5s infinite ease-in-out; }
+        @keyframes pulse-gold { 0%, 100% { opacity: 0.4; } 50% { opacity: 1; } }
+
+        #success-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 999; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; }
+        .copy-btn { font-size: 9px; color: var(--gold); border: 1px solid var(--gold); padding: 2px 8px; margin-top: 8px; cursor: pointer; text-transform: uppercase; display: inline-block; }
+        .footer { text-align: center; padding: 60px 0; border-top: 1px solid #1a1a1a; font-size: 11px; color: #444; letter-spacing: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="view-selection">
+        <header>
+            <div class="header-font logo-text shimmer">SKY PARTY</div>
+            <h1 class="header-font" style="font-size: 24px; letter-spacing: 4px; margin-top: 20px;">Secure Settlement Protocol</h1>
+        </header>
+
+        <span class="section-title">1. Confirm Manifest Allocation</span>
+        <div class="manifest-slider-wrap" id="slider"></div>
+        <div id="mission-total" style="text-align: right; color: var(--gold); font-family: 'Montserrat'; font-weight: 700; font-size: 14px; min-height: 20px;"></div>
+
+        <span class="section-title">2. Activation Timeline</span>
+        <div class="protocol-card">
+            <div class="timeline-box">
+                <div class="timeline-item">
+                    <strong>Phase I: Initiation</strong>
+                    Experience cycles begin 10 to 15 days post-initial protocol initiation.
+                </div>
+                <div class="timeline-item" style="margin-bottom: 0;">
+                    <strong>Phase II: Settlement</strong>
+                    Final balances must be cleared 7 to 15 days prior to scheduled flight departure.
+                </div>
+            </div>
+        </div>
+
+        <span class="section-title">3. Settlement Channels</span>
+        <!-- NGN -->
+        <div class="protocol-card" style="border-left: 4px solid #10723a;">
+            <span class="bank-label">NIGERIAN BANKING</span>
+            <span class="bank-value">FIDELITY BANK PLC / 4011612222</span>
+            <span class="bank-value">SKY PARTY LTD</span>
+            <div class="copy-btn" onclick="copyText('4011612222')">Copy Account</div>
+        </div>
+
+        <!-- USD WIRE -->
+        <div class="protocol-card" style="border-left: 4px solid var(--gold);">
+            <span class="bank-label">USD WIRE (INTERNATIONAL)</span>
+            <span class="bank-value">SKY PARTY LTD / 5240087555</span>
+            <span class="bank-value">FIDELITY BANK / SWIFT: FIDTNGLA</span>
+            <span class="bank-label" style="margin-top:15px">Intermediary</span>
+            <span class="bank-value" style="font-size: 13px;">Citibank N.A. NY / CITIUS33 / ABA / Routing Number: 021000089</span>
+
+•  <span class="bank-value" style="font-size: 13px;">Fidelity Bank Account with Citibank: 36115264
+</span>
+
+
+        </div>
+
+        <!-- USDT -->
+        <div class="protocol-card" style="border-left: 4px solid #f3ba2f;">
+            <span class="bank-label">USDT BEP20 WALLET</span>
+            <span class="bank-value" style="font-size: 12px; margin-bottom: 8px;">0xB9c934967e80728cF4156E1522fE18660B8eEC60</span>
+            <div class="copy-btn" onclick="copyText('0xB9c934967e80728cF4156E1522fE18660B8eEC60')">Copy Address</div>
+        </div>
+
+        <button onclick="goToActivation()" class="cta-button" id="initiate-btn" disabled style="opacity:0.5">Select Allocation to Proceed</button>
+    </div>
+
+    <div id="view-activation" class="hidden">
+        <div class="header-font" style="font-size: 32px; color: var(--gold); text-align: center; margin: 40px 0;">Activation Protocol</div>
+
+        <div class="status-card" style="background: #0a0a0a; padding: 30px; border: 1px solid #222;">
+            <div class="input-group">
+                <label class="bank-label">Legal Name</label>
+                <input type="text" id="guest-name" class="ref-input" placeholder="Full Name">
+            </div>
+            <div class="input-group">
+                <label class="bank-label">Email</label>
+                <input type="email" id="guest-email" class="ref-input" placeholder="Email Address">
+            </div>
+            <div class="input-group">
+                <label class="bank-label">WhatsApp</label>
+                <input type="tel" id="guest-phone" class="ref-input" placeholder="+234">
+            </div>
+
+            <div class="ref-box">
+                <div class="ref-code" id="dynamic-ref">SP | FUL | -- | ----</div>
+            </div>
+
+            <!-- REFERENCE KEY -->
+            <div class="narration-key">
+                <div class="key-item"><span>SP</span> Sky Party</div>
+                <div class="key-item"><span>FUL</span> Full Payment</div>
+                <div class="key-item"><span>DEP</span> Deposit</div>
+                <div class="key-item"><span>BAL</span> Balance</div>
+<div class="key-item"><span>X000</span>Connector Code</div>
+            </div>
+
+            <label class="bank-label">Confirm Transfer Narration:</label>
+            <input type="text" id="user-ref-rewrite" class="ref-input" style="text-align: center; letter-spacing: 2px;">
+
+            <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                <span id="upload-label" style="font-size: 11px; color: #888;">[ UPLOAD PROOF OF SETTLEMENT ]</span>
+                <input type="file" id="file-input" style="display:none" onchange="fileSelected(this)">
+            </div>
+
+            <button class="cta-button" id="submit-btn" onclick="submitData()">Confirm & Dispatch</button>
+            <a href="https://wa.me/+2349167621703" class="concierge-link">Concierge Assistance Protocol</a>
+        </div>
+    </div>
+
+    <div id="success-overlay" class="hidden">
+        <div class="header-font shimmer" style="font-size: 40px; margin-bottom: 20px;">Protocol Cleared</div>
+        <p style="color: #ccc; max-width: 400px; line-height: 2;">Your settlement advice has been received. Our Treasury Concierge is currently verifying the manifest.</p>
+        <button class="cta-button" onclick="location.reload()" style="width: auto; padding: 20px 40px;">Return to Hub</button>
+    </div>
+
+    <footer class="footer">CONFIDENTIAL | SKY PARTY LTD</footer>
+</div>
+
+<script>
+    const tiers = [
+        { id: 'S', count: 1, rate: 50000, name: "Sovereign" },
+        { id: 'G2', count: 2, rate: 25500, name: "Duumvirate" },
+        { id: 'G4', count: 4, rate: 13000, name: "Quartet" },
+        { id: 'G6', count: 6, rate: 8400,  name: "Elite" },
+        { id: 'G8', count: 8, rate: 6500,  name: "Circuit" }
+    ];
+
+    let selectedTier = null;
+    const workerURL = "https://skyparty.15thdlogistics.workers.dev"; 
+
+    function copyText(val) {
+        navigator.clipboard.writeText(val);
+        alert('Copied to Clipboard');
+    }
+
+    function init() {
+        const slider = document.getElementById('slider');
+        tiers.forEach((t) => {
+            const box = document.createElement('div');
+            box.className = 'manifest-box';
+            box.innerHTML = `<div class="m-price">$${t.rate.toLocaleString()}</div><div class="m-desc">${t.name}</div>`;
+            box.onclick = () => {
+                selectedTier = t;
+                document.querySelectorAll('.manifest-box').forEach(b => b.classList.remove('active'));
+                box.classList.add('active');
+                document.getElementById('mission-total').innerText = `Allocation: $${(t.count * t.rate).toLocaleString()}`;
+                const btn = document.getElementById('initiate-btn');
+                btn.disabled = false; btn.style.opacity = 1;
+            };
+            slider.appendChild(box);
+        });
+    }
+
+    function goToActivation() {
+        document.getElementById('view-selection').classList.add('hidden');
+        document.getElementById('view-activation').classList.remove('hidden');
+        const params = new URLSearchParams(window.location.search);
+        const cCode = params.get('c') || 'X000';
+        const finalRef = `SP | FUL | ${selectedTier.id} | ${cCode}`;
+        document.getElementById('dynamic-ref').innerText = finalRef;
+        document.getElementById('user-ref-rewrite').value = finalRef;
+    }
+
+    function fileSelected(input) {
+        if(input.files[0]) document.getElementById('upload-label').innerText = `ATTACHED: ${input.files[0].name}`;
+    }
+
+    async function submitData() {
+        const fileInput = document.getElementById('file-input');
+        const btn = document.getElementById('submit-btn');
+        if(!fileInput.files[0]) return alert("Proof of Settlement required.");
+
+        btn.innerText = "ESTABLISHING HANDSHAKE...";
+        btn.disabled = true;
+
+        const formData = new FormData();
+        formData.append("file", fileInput.files[0]);
+        formData.append("refCode", document.getElementById('user-ref-rewrite').value);
+        formData.append("guestName", document.getElementById('guest-name').value);
+        formData.append("guestEmail", document.getElementById('guest-email').value);
+        formData.append("guestPhone", document.getElementById('guest-phone').value);
+
+        try {
+            const res = await fetch(workerURL, { method: "POST", body: formData });
+            const data = await res.json();
+            if(data.success) {
+                document.getElementById('view-activation').classList.add('hidden');
+                document.getElementById('success-overlay').classList.remove('hidden');
+            } else { throw new Error(data.error); }
+        } catch (err) {
+            alert("Protocol Error: " + err.message);
+            btn.disabled = false; btn.innerText = "Retry Dispatch";
+        }
+    }
+    init();
+</script>
+</body>
+</html>
