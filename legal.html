@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal & Compliance | 15D Sky Party™</title>
+    <!-- Brand Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#D4AF37',
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #000000;
+            --card-bg: #0a0a0a;
+            --border: #1a1a1a;
+        }
+
+        body { 
+            background-color: var(--dark-bg); 
+            font-family: 'Lexend', sans-serif; 
+            color: #ffffff; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header-font {
+            font-family: 'Canter Bold', sans-serif;
+            text-transform: uppercase;
+            font-weight: normal; 
+        }
+
+        .shimmer {
+            background: linear-gradient(to right, var(--gold) 0%, #ffffff 20%, var(--gold) 40%, var(--gold) 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .legal-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+        }
+
+        .legal-card:hover {
+            border-color: rgba(212, 175, 55, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .gold-bullet {
+            color: var(--gold);
+            margin-right: 12px;
+            font-weight: bold;
+        }
+
+        .btn-luxury {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 10px;
+        }
+
+        .btn-luxury:hover {
+            background: var(--gold);
+            color: black;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <!-- Premium Navigation -->
+    <header class="p-6 md:p-10 flex justify-between items-center z-50 bg-black border-b border-zinc-900 sticky top-0">
+        <div class="header-font text-3xl md:text-4xl tracking-widest shimmer">SKY PARTY</div>
+        <nav class="hidden lg:flex space-x-10 text-[10px] font-montserrat tracking-[3px] uppercase text-zinc-500">
+            <a href="https://www.skyparty.name.ng/home" class="hover:text-gold transition-colors">Home</a>
+            <a href="https://www.skyparty.name.ng/experience" class="hover:text-gold transition-colors">The Circuit</a>
+            <a href="https://app.skyparty.name.ng" class="text-gold border border-gold/30 px-4 py-2 hover:bg-gold hover:text-black transition-all">Portal Access</a>
+        </nav>
+    </header>
+
+    <main class="w-full max-w-5xl mx-auto py-16 md:py-24 px-6 space-y-16">
+        
+        <!-- Hero Section -->
+        <section class="text-center space-y-6">
+            <p class="text-[10px] md:text-xs text-gold font-montserrat font-bold tracking-[4px] uppercase animate-pulse">
+                Institutional Integrity & Regulatory Framework
+            </p>
+            <h1 class="text-5xl md:text-7xl header-font tracking-widest leading-none">
+                LEGAL <span class="text-zinc-800">|</span> POLICIES
+            </h1>
+            <div class="space-y-4">
+                <p class="text-zinc-400 text-sm md:text-base max-w-2xl mx-auto font-light leading-relaxed">
+                    15D Sky Party™ is a premium lifestyle event circuit curated by 15th Dimension Group, 
+                    a company duly registered in the Federal Republic of Nigeria with <strong>RC 8997727</strong>.
+                </p>
+                <p class="text-zinc-500 text-[11px] font-montserrat tracking-widest uppercase italic">
+                    All operations are compliant with Nigerian corporate and aviation laws.
+                </p>
+            </div>
+        </section>
+
+        <!-- Charter Agreement -->
+        <section class="legal-card p-8 md:p-12 rounded-sm space-y-8">
+            <div class="flex items-center space-y-2 flex-col md:flex-row md:space-y-0 md:justify-between">
+                <h2 class="header-font text-3xl tracking-widest text-gold">Corporate Event Framework</h2>
+                <span class="text-[9px] font-montserrat px-3 py-1 border border-zinc-800 text-zinc-500 uppercase">Verification RC 8997727</span>
+            </div>
+            
+            <p class="text-zinc-300 font-light leading-relaxed border-l border-gold/20 pl-6">
+                15D Sky Party™ acts as the Corporate Event Host and Charterer. We do not provide air transport services directly; 
+                rather, we secure whole-aircraft charter capacity from NCAA-licensed Air Operator’s Certificate (AOC) holders 
+                to facilitate a private networking environment for our vetted members.
+            </p>
+
+            <ul class="grid md:grid-cols-2 gap-6 text-xs md:text-sm text-zinc-400 font-light font-lexend">
+                <li class="flex items-start"><span class="gold-bullet">/</span> Charterer Identity: Sky Party LTD (RC 8997727) as the primary event host.</li>
+                <li class="flex items-start"><span class="gold-bullet">/</span> Aviation Partner: All flights executed by licensed AOC holders under Nig. CARs Part 9.</li>
+                <li class="flex items-start"><span class="gold-bullet">/</span> Passenger Rights: Fully protected under Nig. CARs Part 1.3 protections.</li>
+                <li class="flex items-start"><span class="gold-bullet">/</span> Compliance: Strict adherence to ICAO safety briefings and NAFDAC catering standards.</li>
+                <li class="flex items-start"><span class="gold-bullet">/</span> Logistics Split: Automated disbursement ensuring aviation fees reach the operator directly.</li>
+                <li class="flex items-start"><span class="gold-bullet">/</span> NDA Protocols: Binding confidentiality required for all 15th Dimension manifest attendees.</li>
+            </ul>
+
+            <div class="pt-6 border-t border-zinc-900 flex justify-center">
+                <a href="https://drive.google.com/file/d/15bAiHp4HnGBEddAabSCkfyMNShcm9wQj/view?usp=drivesdk" target="_blank" class="btn-luxury px-10 py-4 rounded-sm">
+                    Access Charter Manifest Terms
+                </a>
+            </div>
+        </section>
+
+        <!-- Dual Column Policies -->
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Conduct & Safety -->
+            <section class="legal-card p-8 rounded-sm space-y-6">
+                <h3 class="header-font text-2xl tracking-wider text-gold">Service Standards</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                    Participation requires biometric verification and NDA execution. As an event-based circuit, 
+                    attendance is subject to the Behavioral Compliance Form. 15D Sky Managers 
+                    act as event liaisons to ensure a seamless experience outside of crew flight duties.
+                </p>
+                <a href="https://www.skyparty.name.ng/terms-of-service" class="text-[10px] font-montserrat text-zinc-400 hover:text-gold tracking-[2px] uppercase flex items-center gap-2">
+                    Review Service Terms <span>&rarr;</span>
+                </a>
+            </section>
+
+            <!-- Grievance & Rights -->
+            <section class="legal-card p-8 rounded-sm space-y-6">
+                <h3 class="header-font text-2xl tracking-wider text-gold">Logistics Support</h3>
+                <p class="text-xs text-zinc-500 leading-relaxed font-light">
+                    Despite our status as an event curator, we provide comprehensive passenger support. 
+                    Technical delays exceeding Part 1.3 thresholds are subject to compensation liaised 
+                    directly with our aviation partners.
+                </p>
+                <a href="mailto:grievance@skyparty.name.ng" class="text-[10px] font-montserrat text-zinc-400 hover:text-gold tracking-[2px] uppercase flex items-center gap-2">
+                    Submit Formal Inquiry <span>&rarr;</span>
+                </a>
+            </section>
+        </div>
+
+        <!-- Verification Block -->
+        <section class="py-12 border-y border-zinc-900 text-center space-y-6">
+            <h4 class="header-font text-xl tracking-widest text-zinc-300">Corporate Transparency</h4>
+            <p class="text-xs text-zinc-500 font-light max-w-xl mx-auto uppercase tracking-tighter">
+                15th Dimension Group (RC 8997727) is a registered private company. Detailed charter 
+                logistics and AOC compliance data are available upon formal credentialing.
+            </p>
+            <a href="mailto:compliance@skyparty.name.ng" class="inline-block border-b border-gold pb-1 text-gold text-xs font-montserrat tracking-widest uppercase hover:text-white hover:border-white transition-all">
+                compliance@skyparty.name.ng
+            </a>
+        </section>
+
+    </main>
+
+    <!-- Detailed Footer -->
+    <footer class="bg-black py-20 border-t border-zinc-900 text-center">
+        <div class="max-w-4xl mx-auto px-6 space-y-10">
+            <div class="flex flex-wrap justify-center gap-8 text-[9px] font-montserrat tracking-[3px] uppercase text-zinc-500">
+                <a href="/how-this-works" class="hover:text-gold">NDA Protocol</a>
+                <a href="/privacy-policy" class="hover:text-gold">Data Privacy</a>
+                <a href="/contact" class="hover:text-gold">Logistics Desk</a>
+                <a href="ncaa.gov.ng" class="hover:text-gold">NCAA Updates</a>
+            </div>
+            
+            <div class="space-y-4">
+                <p class="text-[10px] text-zinc-400 font-light leading-loose max-w-3xl mx-auto uppercase">
+                    &copy; 2026 15D SKY PARTY™, A SUBSIDIARY OF 15TH DIMENSION GROUP (SKY PARTY LTD RC 8997727). <br>
+                    ALL FLIGHTS OPERATED BY NCAA-LICENSED AOC HOLDERS. 15D ACTS AS THE CORPORATE CHARTERER 
+                    AND EVENT HOST. PAYMENTS PROCESSED VIA AUTOMATED DISBURSEMENT: AVIATION FEES REMITTED 
+                    TO OPERATOR, EVENT FEES TO 15D GROUP.
+                </p>
+            </div>
+            
+            <div class="header-font text-2xl text-zinc-900 tracking-[15px]">
+                THE 15TH DIMENSION
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
