@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Experiences | Sky Party™</title>
     
-    <!-- Favicon / Preview Image -->
     <link rel="icon" type="image/png" href="https://res.cloudinary.com/dw9m06rgf/image/upload/v1773121881/Sky_Party_20250623_133948_0000_porkzk.png">
     
-    <!-- Fonts -->
     <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;1,300&family=Lexend:wght@100;300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
 
@@ -30,20 +28,9 @@
                             dark: '#b08724'
                         }
                     },
-                    animation: {
-                        'fadeIn': 'fadeIn 1.5s ease-out forwards',
-                        'shimmer': 'shimmer 3s ease-in-out infinite',
+                    borderRadius: {
+                        '3xl': '2.5rem', 
                     },
-                    keyframes: {
-                        fadeIn: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' }
-                        },
-                        shimmer: {
-                            '0%, 100%': { backgroundPosition: '0% 50%' },
-                            '50%': { backgroundPosition: '100% 50%' }
-                        }
-                    }
                 }
             }
         }
@@ -53,8 +40,10 @@
             background-color: #000000;
             color: #FFFFFF;
             -webkit-font-smoothing: antialiased;
+            letter-spacing: 0.02em;
+            overflow-x: hidden;
         }
-        .canter-text { font-family: 'Canter Bold', sans-serif; letter-spacing: 0.05em; line-height: 0.9; }
+        .canter-text { font-family: 'Canter Bold', sans-serif; letter-spacing: 0.08em; line-height: 0.85; }
         
         .gold-gradient-text {
             background: linear-gradient(to right, #b08724, #dfce6b, #b08724);
@@ -65,340 +54,392 @@
         .shimmer-btn {
             background: linear-gradient(90deg, #b08724 0%, #dfce6b 50%, #b08724 100%);
             background-size: 200% 100%;
-            animation: shimmer 3s ease-in-out infinite;
-            transition: all 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 4px;
         }
-        .shimmer-btn:hover { transform: scale(1.05); filter: brightness(1.1); }
+        .shimmer-btn:hover { transform: translateY(-2px); filter: brightness(1.15); box-shadow: 0 10px 40px rgba(176, 133, 36, 0.2); }
 
         .experience-card {
-            background: rgba(10, 10, 10, 0.8);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            background: #080808;
+            border: 1px solid rgba(212, 175, 55, 0.05);
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
             overflow: hidden;
+            border-radius: 2.5rem;
         }
         .experience-card:hover {
-            border-color: rgba(212, 175, 55, 0.5);
-            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.3);
+            background: #0c0c0c;
         }
 
-        .video-container {
+        .video-wrapper {
             position: relative;
-            aspect-ratio: 16/9;
             width: 100%;
             overflow: hidden;
-            background: #050505;
+            background: #000;
         }
-        .video-container video {
+        .video-wrapper video {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.7;
+            transform: scale(1.15); 
+            opacity: 0.6;
+            transition: all 0.8s ease;
+            filter: grayscale(30%);
+        }
+        .experience-card:hover video { 
+            opacity: 1; 
+            filter: grayscale(0%);
+            transform: scale(1.2); 
+        }
+
+        .secret-blur-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0,0,0,0.4);
+            backdrop-filter: blur(40px);
+            z-index: 10;
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: none;
+        }
+        .experience-card:hover .secret-blur-overlay {
+            backdrop-filter: blur(0px);
+            background: rgba(0,0,0,0);
+        }
+
+        #portal-slider {
+            position: fixed;
+            bottom: -100%;
+            left: 0;
+            width: 100%;
+            height: 90vh;
+            background: #050505;
+            z-index: 100;
+            transition: bottom 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 3rem 3rem 0 0;
+            box-shadow: 0 -20px 50px rgba(0,0,0,0.9);
+        }
+        #portal-slider.active { bottom: 0; }
+        .slider-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px);
+            z-index: 90;
+            opacity: 0;
+            pointer-events: none;
             transition: opacity 0.5s ease;
         }
-        .experience-card:hover video { opacity: 1; }
+        .slider-overlay.active { opacity: 1; pointer-events: auto; }
 
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 5px; }
+        .reveal-container {
+            position: relative;
+            height: 140vh; 
+        }
+        .sticky-reveal {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .reveal-content {
+            z-index: 10;
+            transition: transform 0.1s linear, opacity 0.1s linear;
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #b08724; }
+        
+        .luxury-section-spacing { padding-top: 12rem; padding-bottom: 12rem; }
     </style>
 </head>
 <body class="font-lexend">
 
-    <!-- Header -->
-    <header class="fixed top-0 w-full z-50 bg-black/80 backdrop-blur-md border-b border-white/5">
-        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <div class="canter-text text-3xl text-gold">SKY PARTY™</div>
-            <nav class="hidden md:flex space-x-8 text-[10px] uppercase tracking-[0.3em] font-montserrat font-light">
-                <a href="#" class="hover:text-gold transition">The Ascent</a>
-                <a href="#" class="text-gold">Experiences</a>
-                <a href="#" class="hover:text-gold transition">Concierge</a>
-            </nav>
-            <a href="#booking" class="shimmer-btn px-6 py-2 text-black text-[10px] font-bold uppercase tracking-widest">
-                Book Now
-            </a>
+    <div id="slider-overlay" class="slider-overlay" onclick="closePortal()"></div>
+    <div id="portal-slider">
+        <div class="flex justify-between items-center px-10 py-6 border-b border-white/5">
+            <span class="canter-text text-2xl text-gold uppercase tracking-widest">Experience Portal</span>
+            <button onclick="closePortal()" class="text-zinc-500 hover:text-white uppercase text-[10px] tracking-widest font-bold">Close ✕</button>
         </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section class="relative h-screen flex items-center justify-center overflow-hidden">
-        <video autoplay muted loop playsinline class="absolute w-full h-full object-fit-cover opacity-50">
-            <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776173773/Copy_of_Untitled_Design_okjrx3.mp4" type="video/mp4">
-        </video>
-        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent"></div>
-        
-        <div class="relative z-10 text-center px-6 max-w-5xl animate-fadeIn">
-            <h1 class="canter-text text-6xl md:text-9xl mb-4">EVERY EXPERIENCE HITS <br> DIFFERENT AT <span class="gold-gradient-text">40,000 FEET</span></h1>
-            <p class="font-playfair italic text-lg md:text-2xl text-gray-300 mb-10 max-w-2xl mx-auto">
-                From romance and celebrations to private luxury moments, welcome to a world where ordinary plans don’t exist.
-            </p>
-            <div class="flex flex-col md:flex-row items-center justify-center gap-6">
-                <a href="#grid" class="shimmer-btn px-12 py-4 text-black font-bold uppercase tracking-widest text-xs w-full md:w-auto">
-                    Explore Experiences
-                </a>
-                <a href="#booking" class="border border-gold/50 px-12 py-4 text-gold font-bold uppercase tracking-widest text-xs hover:bg-gold hover:text-black transition-all w-full md:w-auto">
-                    Book Your Flight
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust Strip -->
-    <div class="bg-zinc-950 border-y border-white/5 py-6 overflow-hidden">
-        <div class="flex whitespace-nowrap animate-infinite-scroll justify-around text-[10px] md:text-xs tracking-[0.5em] uppercase font-montserrat text-gold-dark">
-            <span>Private Jet Luxury</span>
-            <span class="hidden md:block">•</span>
-            <span>Tailored Experiences</span>
-            <span class="hidden md:block">•</span>
-            <span>Premium Service</span>
-            <span class="hidden md:block">•</span>
-            <span>Unforgettable Memories</span>
+        <div class="w-full h-full pb-20">
+            <iframe id="portal-frame" src="" class="w-full h-full border-none"></iframe>
         </div>
     </div>
 
-    <!-- Main Experiences Grid -->
-    <section id="grid" class="py-24 px-6 max-w-7xl mx-auto">
-        <div class="text-center mb-20 animate-fadeIn">
-            <h2 class="canter-text text-5xl md:text-7xl mb-4 uppercase">Choose Your Experience</h2>
-            <div class="w-20 h-[1px] bg-gold mx-auto mb-6"></div>
-            <p class="font-playfair italic text-gray-400 text-lg">Every moment has its own energy. Pick your vibe, customize your journey.</p>
+    <header class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-10 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <nav class="hidden lg:flex space-x-10 text-[8px] uppercase tracking-[0.5em] font-montserrat font-light text-zinc-500">
+                <a href="#" class="hover:text-gold transition-all duration-500">The Ascent</a>
+                <a href="#" class="text-gold">Experiences</a>
+                <a href="#" class="hover:text-gold transition-all duration-500">Concierge</a>
+            </nav>
+
+            <div class="canter-text text-2xl md:text-3xl text-gold tracking-[0.15em] absolute left-1/2 -translate-x-1/2">
+                SKY PARTY™
+            </div>
+
+            <div class="flex items-center ml-auto">
+                <button onclick="openPortal()" class="shimmer-btn px-6 py-2.5 text-black text-[8px] font-bold uppercase tracking-[0.25em]">
+                    Request Allocation
+                </button>
+            </div>
+            
+        </div>
+    </header>
+
+    <section class="reveal-container" id="hero-reveal">
+        <div class="sticky-reveal">
+            <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-40">
+                <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776173773/Copy_of_Untitled_Design_okjrx3.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-gradient-to-b from-black/20 via-black/40 to-black"></div>
+            
+            <div class="reveal-content text-center px-6 max-w-6xl" id="hero-content">
+                <p class="text-[10px] uppercase tracking-[0.6em] text-gold mb-8 opacity-70">Elevated Social Narratives</p>
+                <h1 class="canter-text text-7xl md:text-[10.5rem] mb-6 uppercase">THE SKY IS NOT THE LIMIT, <br> IT'S THE <span class="font-playfair italic gold-gradient-text">STAGE.</span></h1>
+                <p class="font-playfair italic text-xl md:text-3xl text-zinc-400 mb-12 max-w-3xl mx-auto leading-relaxed">
+                    Welcome to a world where ordinary plans are obsolete.
+                </p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-8">
+                    <a href="#grid" class="shimmer-btn px-14 py-5 text-black font-bold uppercase tracking-widest text-[10px] w-full md:w-auto">
+                        Explore Experiences
+                    </a>
+                    <button onclick="openPortal()" class="border border-gold/30 px-14 py-5 text-gold font-bold uppercase tracking-widest text-[10px] hover:bg-gold/10 transition-all w-full md:w-auto">
+                        Request Experience
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="bg-black border-y border-white/5 py-8 relative z-20">
+        <div class="max-w-7xl mx-auto px-10 flex flex-wrap justify-between items-center gap-8 opacity-40 text-[9px] uppercase tracking-[0.5em] font-montserrat">
+            <span>Private Jet Luxury</span>
+            <span class="w-1 h-1 bg-gold rounded-full"></span>
+            <span>Tailored Narratives</span>
+            <span class="w-1 h-1 bg-gold rounded-full"></span>
+            <span>Premium Curation</span>
+            <span class="w-1 h-1 bg-gold rounded-full"></span>
+            <span>Stratospheric Memories</span>
+        </div>
+    </div>
+
+    <section id="grid" class="luxury-section-spacing px-10 max-w-[1400px] mx-auto relative z-20">
+        <div class="text-center mb-32">
+            <h2 class="canter-text text-6xl md:text-8xl mb-6 uppercase">Choose Your Vibe</h2>
+            <p class="font-playfair italic text-zinc-500 text-xl">Pick your energy, let us handle the magic.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            
-            <!-- Experience 1: Customized -->
-            <div class="experience-card group">
-                <div class="video-container">
-                    <video muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal()">
+                <div class="video-wrapper aspect-video">
+                    <video muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174946/Generating_Premium_Nightlife_Video_fl4sov.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="p-8">
-                    <h3 class="canter-text text-4xl text-gold mb-3 uppercase">Customized Experience</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">
-                        Your imagination leads. Whether it’s a proposal, surprise birthday, corporate flex, content shoot, or something the world has never seen before.
+                <div class="p-14 text-center bg-zinc-950/20 flex-grow">
+                    <h3 class="canter-text text-5xl text-gold mb-6 uppercase">Customized Experience</h3>
+                    <p class="text-[13px] text-zinc-500 leading-[2.2] mb-10 font-light max-w-md mx-auto">
+                        Your imagination leads. Whether it’s a proposal, corporate flex, or something the world has never seen — we’ll build the sky around you.
                     </p>
-                    <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-gold hover:text-white transition">Customize Yours →</a>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-600 group-hover:text-gold transition-all duration-500">Request Custom Allocation →</span>
                 </div>
             </div>
 
-            <!-- Experience 2: Sky Dates -->
-            <div class="experience-card group">
-                <div class="video-container">
-                    <video muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal()">
+                <div class="video-wrapper aspect-video">
+                    <video muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174933/Luxury_Sky_Date_Video_Generation_y3g5x3.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="p-8">
-                    <h3 class="canter-text text-4xl text-gold mb-3 uppercase">Sky Dates</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">
-                        Romance, privacy, candlelight energy, skyline views, and unforgettable chemistry. Perfect for proposals or anniversaries.
+                <div class="p-14 text-center bg-zinc-950/20 flex-grow">
+                    <h3 class="canter-text text-5xl text-gold mb-6 uppercase">Sky Dates</h3>
+                    <p class="text-[13px] text-zinc-500 leading-[2.2] mb-10 font-light max-w-md mx-auto">
+                        Romance at 40,000 feet. Candlelight energy, skyline views, and unforgettable chemistry. Perfect for the ultimate "Yes."
                     </p>
-                    <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-gold hover:text-white transition">Book a Sky Date →</a>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-600 group-hover:text-gold transition-all duration-500">Request Sky Date →</span>
                 </div>
             </div>
 
-            <!-- Experience 3: Sky Owambe -->
-            <div class="experience-card group">
-                <div class="video-container">
-                    <video muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal()">
+                <div class="video-wrapper aspect-video">
+                    <video muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776175011/Owambe_In_The_Sky_Video_Generation_bm2qpk.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="p-8">
-                    <h3 class="canter-text text-4xl text-gold mb-3 uppercase">Sky Owambe</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">
-                        Fashion. Celebration. Energy. Champagne. Culture meets altitude in a premium party experience designed for unforgettable entrances.
+                <div class="p-14 text-center bg-zinc-950/20 flex-grow">
+                    <h3 class="canter-text text-5xl text-gold mb-6 uppercase">Sky Owambe</h3>
+                    <p class="text-[13px] text-zinc-500 leading-[2.2] mb-10 font-light max-w-md mx-auto">
+                        Fashion. Celebration. Pure Energy. Culture meets altitude in a premium party experience designed for legends.
                     </p>
-                    <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-gold hover:text-white transition">Start the Celebration →</a>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-600 group-hover:text-gold transition-all duration-500">Join the Celebration →</span>
                 </div>
             </div>
 
-            <!-- Experience 4: Sky Cinema -->
-            <div class="experience-card group">
-                <div class="video-container flex items-center justify-center bg-zinc-900">
-                    <span class="text-[10px] tracking-[0.5em] text-zinc-700 uppercase">Visuals Loading</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="canter-text text-4xl text-gold mb-3 uppercase">Sky Cinema</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">
-                        Your own private screening in the sky. Movies, mood lighting, gourmet treats, and an atmosphere that turns watching into an event.
-                    </p>
-                    <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-gold hover:text-white transition">Reserve Sky Cinema →</a>
-                </div>
-            </div>
-
-            <!-- Experience 5: Sky Soirée -->
-            <div class="experience-card group">
-                <div class="video-container flex items-center justify-center bg-zinc-900">
-                     <span class="text-[10px] tracking-[0.5em] text-zinc-700 uppercase">Visuals Loading</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="canter-text text-4xl text-gold mb-3 uppercase">Sky Soirée</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">
-                        For intimate luxury gatherings, classy birthdays, or stylish social moments. Elegant vibes only.
-                    </p>
-                    <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-gold hover:text-white transition">Host a Soirée →</a>
-                </div>
-            </div>
-
-            <!-- Experience 6: Sky Games -->
-            <div class="experience-card group">
-                <div class="video-container flex items-center justify-center bg-zinc-900">
-                     <span class="text-[10px] tracking-[0.5em] text-zinc-700 uppercase">Visuals Loading</span>
-                </div>
-                <div class="p-8">
-                    <h3 class="canter-text text-4xl text-gold mb-3 uppercase">Sky Games</h3>
-                    <p class="text-sm text-gray-400 leading-relaxed mb-6 font-light">
-                        Competition, laughter, and prizes. Ideal for birthdays, team bonding, and friend groups.
-                    </p>
-                    <a href="#" class="text-[10px] tracking-[0.3em] uppercase text-gold hover:text-white transition">Play in the Sky →</a>
-                </div>
-            </div>
-
-            <!-- Experience 7: Sky Secrets (18+) -->
-            <div class="experience-card group col-span-1 md:col-span-2 lg:col-span-3 border-red-900/20 bg-gradient-to-r from-black to-zinc-950">
-                <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="video-container">
-                        <video muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()">
-                            <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174771/Video_Generation_Request_Fulfilled_mquww6.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                    <div class="p-12 flex flex-col justify-center">
-                        <div class="flex items-center gap-4 mb-4">
-                            <h3 class="canter-text text-5xl text-red-700 uppercase">Sky Secrets</h3>
-                            <span class="border border-red-700 text-red-700 px-2 py-1 text-[8px] font-bold">18+</span>
-                        </div>
-                        <p class="text-gray-400 leading-relaxed mb-8 font-light italic font-playfair">
-                            Private adults-only experiences curated with style, discretion, and elevated luxury. Exclusive moments for those who understand privacy and premium indulgence.
-                        </p>
-                        <a href="#" class="shimmer-btn px-8 py-3 text-black font-bold uppercase tracking-widest text-[10px] self-start">
-                            Enter Privately
-                        </a>
+            <div class="experience-card group flex flex-col cursor-pointer relative" onclick="openPortal()">
+                <div class="absolute top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none">
+                    <div class="bg-red-950/40 border border-red-800/30 px-4 py-1.5 rounded-full flex items-center gap-2">
+                        <span class="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
+                        <span class="text-[8px] uppercase tracking-[0.3em] font-bold text-red-500">Limited Secret Slot Available</span>
                     </div>
                 </div>
-            </div>
 
-        </div>
-    </section>
-
-    <!-- Why Choose -->
-    <section class="py-24 bg-zinc-950 border-y border-white/5">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <h2 class="canter-text text-6xl mb-8 uppercase">Why Settle for <br> Ground Level?</h2>
-                <div class="space-y-8">
-                    <div class="flex gap-6">
-                        <div class="text-gold font-canter text-4xl">01</div>
-                        <div>
-                            <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-2">Exclusive Venue</h4>
-                            <p class="text-gray-400 text-sm font-light">A private jet transforms every moment into a statement.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6">
-                        <div class="text-gold font-canter text-4xl">02</div>
-                        <div>
-                            <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-2">Tailored to You</h4>
-                            <p class="text-gray-400 text-sm font-light">No templates. Every experience can be customized to your specific legacy.</p>
-                        </div>
-                    </div>
-                    <div class="flex gap-6">
-                        <div class="text-gold font-canter text-4xl">03</div>
-                        <div>
-                            <h4 class="font-bold text-white uppercase tracking-widest text-sm mb-2">Privacy & Comfort</h4>
-                            <p class="text-gray-400 text-sm font-light">Discreet, premium, and guest-focused from takeoff to landing.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="relative">
-                <div class="aspect-square border border-gold/20 p-4">
-                    <video autoplay muted loop playsinline class="w-full h-full object-cover">
-                        <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776173773/Copy_of_Untitled_Design_okjrx3.mp4" type="video/mp4">
+                <div class="video-wrapper aspect-video relative">
+                    <div class="secret-blur-overlay"></div>
+                    <video muted loop playsinline onmouseenter="this.play()" onmouseleave="this.pause()">
+                        <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174771/Video_Generation_Request_Fulfilled_mquww6.mp4" type="video/mp4">
                     </video>
                 </div>
-                <div class="absolute -bottom-10 -left-10 bg-black border border-gold/30 p-8 hidden md:block">
-                    <p class="canter-text text-5xl text-gold">40,000 FT</p>
-                    <p class="text-[8px] tracking-[0.5em] uppercase text-white/50">Cruising Altitude</p>
+                <div class="p-14 text-center bg-black flex-grow">
+                    <div class="flex items-center justify-center gap-4 mb-6">
+                        <h3 class="canter-text text-5xl text-red-800 uppercase">Sky Secrets</h3>
+                        <span class="text-[8px] border border-red-900/40 text-red-900 px-2 py-1">18+</span>
+                    </div>
+                    <p class="text-[13px] text-zinc-600 leading-[2.2] mb-10 font-light max-w-md mx-auto font-playfair italic">
+                        Private adults-only experiences curated with absolute style and discretion. Exclusive indulgence for the sophisticated.
+                    </p>
+                    <span class="text-[9px] tracking-[0.4em] uppercase text-zinc-800 group-hover:text-red-900 transition-all duration-500">Request Private Access →</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- How It Works -->
-    <section class="py-24 px-6 max-w-5xl mx-auto text-center">
-        <h2 class="canter-text text-5xl mb-16 uppercase">The Protocol</h2>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-            <div class="space-y-4">
-                <div class="text-zinc-800 font-canter text-7xl">1</div>
-                <h5 class="text-gold text-xs uppercase tracking-widest">Choose Vibe</h5>
-            </div>
-            <div class="space-y-4">
-                <div class="text-zinc-800 font-canter text-7xl">2</div>
-                <h5 class="text-gold text-xs uppercase tracking-widest">Customize</h5>
-            </div>
-            <div class="space-y-4">
-                <div class="text-zinc-800 font-canter text-7xl">3</div>
-                <h5 class="text-gold text-xs uppercase tracking-widest">Confirm</h5>
-            </div>
-            <div class="space-y-4">
-                <div class="text-zinc-800 font-canter text-7xl">4</div>
-                <h5 class="text-gold text-xs uppercase tracking-widest">Take Off</h5>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-24 bg-black">
-        <div class="max-w-4xl mx-auto px-6 text-center">
-            <p class="text-[10px] tracking-[0.5em] uppercase text-gold mb-8 font-montserrat">The Registry</p>
-            <h2 class="canter-text text-5xl md:text-7xl mb-16 uppercase italic">"People Don't Forget This"</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="font-playfair italic text-gray-400">
-                    <p class="mb-4">"I thought it would be nice. I didn’t know it would be legendary."</p>
-                    <cite class="text-[10px] uppercase tracking-widest not-italic text-white">— Tech Founder</cite>
+    <section class="luxury-section-spacing text-center bg-zinc-950/10 relative z-20">
+        <div class="max-w-4xl mx-auto px-10">
+            <h2 class="canter-text text-7xl md:text-[9rem] mb-20 uppercase opacity-10">THE PROTOCOL</h2>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-20">
+                <div class="group">
+                    <p class="font-canter text-5xl text-zinc-800 group-hover:text-gold transition-colors duration-700">01</p>
+                    <p class="text-[9px] uppercase tracking-[0.4em] text-zinc-500 mt-6">Selection</p>
                 </div>
-                <div class="font-playfair italic text-gray-400">
-                    <p class="mb-4">"Best birthday experience of my life. Period."</p>
-                    <cite class="text-[10px] uppercase tracking-widest not-italic text-white">— Creative Director</cite>
+                <div class="group">
+                    <p class="font-canter text-5xl text-zinc-800 group-hover:text-gold transition-colors duration-700">02</p>
+                    <p class="text-[9px] uppercase tracking-[0.4em] text-zinc-500 mt-6">Curation</p>
+                    <p class="text-[7px] text-zinc-600 mt-2 uppercase tracking-widest font-bold">Full Payment or Deposit</p>
                 </div>
-                <div class="font-playfair italic text-gray-400">
-                    <p class="mb-4">"Luxury on another level. Everyone kept talking about it for weeks."</p>
-                    <cite class="text-[10px] uppercase tracking-widest not-italic text-white">— Private Principal</cite>
+                <div class="group">
+                    <p class="font-canter text-5xl text-zinc-800 group-hover:text-gold transition-colors duration-700">03</p>
+                    <p class="text-[9px] uppercase tracking-[0.4em] text-zinc-500 mt-6">Confirm</p>
+                    <p class="text-[8px] text-gold/50 mt-4 uppercase tracking-tighter">10-15 Days After First Payment</p>
+                </div>
+                <div class="group">
+                    <p class="font-canter text-5xl text-zinc-800 group-hover:text-gold transition-colors duration-700">04</p>
+                    <p class="text-[9px] uppercase tracking-[0.4em] text-zinc-500 mt-6">Lift Off</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Final CTA -->
-    <section id="booking" class="py-32 text-center bg-gradient-to-t from-gold-dark/20 to-black">
-        <h2 class="canter-text text-6xl md:text-9xl mb-6 uppercase">Ready for <br> Something Unreal?</h2>
-        <p class="font-playfair italic text-xl text-gray-300 mb-12">The next story your friends won’t believe starts here.</p>
-        <div class="flex flex-col md:flex-row justify-center gap-8 px-6">
-            <a href="#" class="shimmer-btn px-16 py-6 text-black font-bold uppercase tracking-widest text-xs">
-                Book Now
-            </a>
-            <a href="#" class="border border-gold/30 px-16 py-6 text-gold font-bold uppercase tracking-widest text-xs hover:bg-gold/10 transition-all">
-                Speak with Concierge
-            </a>
+    <section class="reveal-container" id="post-protocol-reveal">
+        <div class="sticky-reveal">
+            <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-60">
+                <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174946/Generating_Premium_Nightlife_Video_fl4sov.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-black/60"></div>
+            
+            <div class="reveal-content text-center px-10" id="post-protocol-content">
+                <h2 class="canter-text text-7xl md:text-[10rem] mb-6 uppercase leading-none">CRAFTING THE <br> <span class="gold-gradient-text">UNIMAGINABLE.</span></h2>
+                <p class="font-playfair italic text-xl text-zinc-400 max-w-2xl mx-auto">
+                    A blueprint for those who demand more than the ordinary.
+                </p>
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="py-16 border-t border-white/5 text-center text-zinc-600">
-        <div class="max-w-4xl mx-auto px-6">
-            <div class="canter-text text-4xl text-gold-dark mb-8">SKY PARTY™</div>
-            <p class="text-[10px] tracking-[0.3em] uppercase mb-8">
-                Private Bookings • Luxury Experiences • By Reservation Only
+    <section class="py-52 text-center bg-black relative z-20">
+        <div class="max-w-5xl mx-auto px-10">
+            <h2 class="canter-text text-7xl md:text-[10rem] mb-10 uppercase">Ready for <br> The Unreal?</h2>
+            <p class="font-playfair italic text-2xl text-zinc-500 mb-20 max-w-xl mx-auto leading-relaxed opacity-60">
+                The next story your circle won't believe begins at altitude.
             </p>
-            <p class="text-[9px] leading-loose max-w-2xl mx-auto mb-12 font-light">
-                Sky Party™ operates as an event curation atelier. Private aviation logistics are facilitated through third-party NCAA-licensed operators exclusively. Flight fees are settled directly with the designated air carrier.
+            <div class="flex flex-col md:flex-row justify-center gap-12">
+                <button onclick="openPortal()" class="shimmer-btn px-20 py-7 text-black font-bold uppercase tracking-[0.3em] text-[11px]">
+                    Request Allocation
+                </button>
+                <button onclick="openPortal()" class="border border-white/10 px-20 py-7 text-zinc-400 font-bold uppercase tracking-[0.3em] text-[11px] hover:text-white hover:border-white transition-all duration-700">
+                    Speak With Concierge
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-24 bg-black border-t border-white/5 text-center text-zinc-700 relative z-20">
+        <div class="max-w-6xl mx-auto px-10">
+            <div class="canter-text text-5xl text-gold-dark/40 mb-14">SKY PARTY™</div>
+            <div class="flex flex-wrap justify-center gap-10 mb-14 opacity-50 text-[9px] uppercase tracking-[0.4em] font-montserrat">
+                <span>Private Bookings</span>
+                <span>Luxury Curations</span>
+                <span>By Reservation Only</span>
+            </div>
+            <p class="text-[9px] leading-[2.8] max-w-4xl mx-auto mb-20 font-light uppercase tracking-[0.3em] opacity-30">
+                Sky Party™ operates as an event curation atelier. Private aviation logistics are facilitated through third-party NCAA-licensed operators exclusively. Operational confirmation occurs 10 to 15 days post-payment sequence.
             </p>
-            <div class="text-[8px] uppercase tracking-widest">
+            <div class="text-[8px] uppercase tracking-[0.8em] opacity-20 font-montserrat">
                 © 2026 THE PRIVATE REGISTRY | SKY PARTY LTD (RC 8997727)
             </div>
         </div>
     </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            
+            // Hero Reveal
+            const heroSection = document.getElementById('hero-reveal');
+            const heroContent = document.getElementById('hero-content');
+            if (heroSection) {
+                const heroRect = heroSection.getBoundingClientRect();
+                if (heroRect.top <= 0) {
+                    const progress = Math.min(Math.max(-heroRect.top / (heroSection.offsetHeight * 0.5), 0), 1);
+                    heroContent.style.transform = `translateY(${progress * -150}px) scale(${1 - (progress * 0.2)})`;
+                    heroContent.style.opacity = 1 - progress;
+                }
+            }
+
+            // Post-Protocol Reveal
+            const revealSec = document.getElementById('post-protocol-reveal');
+            const revealContent = document.getElementById('post-protocol-content');
+            if (revealSec) {
+                const revealRect = revealSec.getBoundingClientRect();
+                if (revealRect.top <= window.innerHeight && revealRect.bottom >= 0) {
+                    const viewportCenter = window.innerHeight / 2;
+                    const sectionCenter = revealRect.top + (revealRect.height / 2);
+                    const distance = viewportCenter - sectionCenter;
+                    const progress = Math.min(Math.max(Math.abs(distance) / (revealRect.height / 2), 0), 1);
+                    revealContent.style.transform = `scale(${1.2 - (progress * 0.2)})`;
+                    revealContent.style.opacity = 1 - progress;
+                }
+            }
+        });
+
+        function openPortal() {
+            const slider = document.getElementById('portal-slider');
+            const overlay = document.getElementById('slider-overlay');
+            const frame = document.getElementById('portal-frame');
+            frame.src = "https://skyexperience.oneapp.dev";
+            slider.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePortal() {
+            const slider = document.getElementById('portal-slider');
+            const overlay = document.getElementById('slider-overlay');
+            const frame = document.getElementById('portal-frame');
+            slider.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            setTimeout(() => { frame.src = ""; }, 600);
+        }
+    </script>
 
 </body>
 </html>
