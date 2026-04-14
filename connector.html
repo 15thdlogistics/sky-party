@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Elite Connector Access Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    /* Global styles and color scheme inspired by the original block */
+    body { 
+      background: #000; 
+      color: #fff; 
+      font-family: 'Montserrat', sans-serif; 
+    }
+    /* Styles for the "Canter Bold" font */
+    .oswald-thin { 
+      font-family: 'Canter Bold', sans-serif; 
+      letter-spacing: 0.10em; 
+    }
+    /* Styles for a lighter, spaced "Montserrat" text */
+    .montserrat-thin { 
+      font-family: 'Montserrat', sans-serif; 
+      font-weight: 200; 
+      letter-spacing: 0.3em; 
+      font-size: 0.9rem; 
+    }
+   
+    /* The Shimmer Button effect - copied directly */
+    .shimmer-btn {
+      position: relative; overflow: hidden;
+      background: linear-gradient(90deg, #d4a017 0%, #fbbf24 50%, #d4a017 100%);
+      background-size: 200% 100%; animation: shimmer 3s ease-in-out infinite;
+      color: #000; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;
+      border: none; border-radius: 12px; padding: 14px 24px;
+      transition: all 0.3s ease; box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+    }
+    .shimmer-btn:hover { 
+      transform: translateY(-2px); 
+      box-shadow: 0 0 30px rgba(251, 191, 36, 0.7); 
+    }
+    .shimmer-btn::before {
+      content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      animation: shine 3s ease-in-out infinite;
+    }
+    @keyframes shimmer { 
+      0%, 100% { background-position: 0% 50%; } 
+      50% { background-position: 100% 50%; } 
+    }
+    @keyframes shine { 
+      0% { left: -100%; } 
+      50% { left: 100%; } 
+      100% { left: 100%; } 
+    }
+    /* The Glow Input effect - copied directly */
+    .input-glow {
+      background: #111; border: 1px solid #333; color: #fff;
+      padding: 14px; border-radius: 10px; transition: all 0.3s ease;
+    }
+    .input-glow:focus { 
+      outline: none; 
+      border-color: #fbbf24; 
+      box-shadow: 0 0 15px rgba(251, 191, 36, 0.3); 
+    }
+    .hidden { display: none; }
+    
+    /* --- NEW QUIZ STYLES FOR UX --- */
+    .quiz-option {
+      background: #111; /* Slightly darker background */
+      border: 1px solid #333;
+    }
+    .quiz-option:hover {
+      background: #1a1a1a;
+      border-color: #fbbf24;
+    }
+    .quiz-option.selected {
+      background: rgba(251, 191, 36, 0.1); /* Light gold background */
+      border-color: #fbbf24; /* Solid gold border */
+      box-shadow: 0 0 10px rgba(251, 191, 36, 0.2);
+    }
+  </style>
+</head>
+<body class="min-h-screen flex items-start md:items-center justify-center pt-12 pb-12 px-4">
+  <div class="w-full max-w-4xl">
+    
+    <div class="text-center mb-10">
+      <h1 class="oswald-thin text-4xl md:text-6xl tracking-widest text-white">
+        THE ELITE CONNECTOR
+      </h1>
+      <p class="montserrat-thin text-yellow-300 mt-2">
+        PRIVATE ACCESS DOCTRINE
+      </p>
+    </div>
+
+    <div id="accessGate" class="w-full max-w-sm mx-auto">
+        <div class="bg-zinc-900/80 backdrop-blur-sm p-8 rounded-2xl border border-zinc-800 shadow-2xl space-y-5">
+            <p class="text-sm text-gray-300 text-center mb-4 font-light">
+                Enter your secure access code to proceed. (Case-insensitive)
+            </p>
+            <input type="text" id="accessCodeInput" placeholder="ACCESS CODE" class="w-full input-glow text-center text-lg" required>
+            <p id="accessMessage" class="text-xs text-center text-red-500 hidden"></p>
+            <button onclick="checkAccessCode()" class="w-full shimmer-btn">
+                ACTIVATE CORRIDOR
+            </button>
+        </div>
+    </div>
+
+    <div id="connectorDashboard" class="hidden mt-10 p-6 bg-zinc-900/80 backdrop-blur-sm rounded-2xl border border-zinc-800 shadow-2xl space-y-8">
+        
+        <div class="p-4 bg-zinc-800 rounded-xl border border-zinc-700">
+            <h2 class="oswald-thin text-2xl text-white mb-2">WELCOME TO THE CORRIDOR</h2>
+            <p class="text-sm font-light text-gray-300">
+                To confirm alignment and receive your unique Connector Code, please follow these steps:
+            </p>
+            <ol class="list-decimal list-inside text-gray-400 text-sm mt-3 space-y-1">
+                <li>Watch the <strong>Mandatory Alignment Briefing</strong> video completely.</li>
+                <li>Download and review the official manifesto materials below.</li>
+                <li>Click <strong>"I Have Completed the Briefing"</strong> to unlock and pass the 80% Alignment Quiz.</li>
+                <li>Upon passing the quiz, proceed to registration.</li>
+            </ol>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <a href="https://drive.google.com/file/d/1RW2u0KHxQnxZVzo_TOQhqaX5PzyLDBTI/view?usp=drivesdk" target="_blank" class="shimmer-btn text-sm text-center">
+                DOWNLOAD MANIFESTO (PDF)
+            </a>
+            <a href="https://docs.google.com/presentation/d/14DrFl4lxofQlALheJPxbajG-9XP9y_Ri/edit?usp=drivesdk&ouid=10303544748966175578&rtpof=true&sd=true" target="_blank" class="shimmer-btn text-sm text-center">
+                DOWNLOAD MANIFESTO (PPT)
+            </a>
+        </div>
+        
+        <div>
+            <h2 class="oswald-thin text-xl text-yellow-300 mb-4">MANDATORY ALIGNMENT BRIEFING</h2>
+            <div class="aspect-video bg-black rounded-lg overflow-hidden">
+                <div style="left: 0; width: 100%; height: 100%; position: relative; padding-bottom: 56.25%;">
+                    <iframe src="https://www.youtube.com/embed/YiX7-HWAwjw?rel=0" style="top: 0; left: 0; width: 100%; height: 100%; position: absolute; border: 0;" allowfullscreen scrolling="no" allow="accelerometer *; clipboard-write *; encrypted-media *; gyroscope *; picture-in-picture *; web-share *;" referrerpolicy="strict-origin"></iframe>
+                </div>
+            </div>
+        </div>
+        
+        <div id="quizActivation" class="text-center">
+            <button onclick="unlockQuiz()" class="shimmer-btn w-full max-w-md">
+                I HAVE COMPLETED THE BRIEFING
+            </button>
+        </div>
+
+        <div id="quizContainer" class="hidden">
+            <h2 class="oswald-thin text-xl text-yellow-300 mb-6">ELITE CONNECTOR MANIFESTO QUIZ (80% PASS)</h2>
+            <form id="quizForm" class="space-y-6">
+                </form>
+            <button onclick="submitQuiz()" class="shimmer-btn mt-8">
+                SUBMIT & CONFIRM ALIGNMENT
+            </button>
+            <div id="quizResults" class="mt-6 p-4 rounded-lg text-center font-semibold hidden"></div>
+        </div>
+
+        <div id="signupArea" class="hidden pt-6 border-t border-zinc-800 text-center">
+            <p class="montserrat-thin text-green-400 mb-4">ALIGNMENT CONFIRMED. WELCOME TO THE CORRIDOR.</p>
+            <a id="signupButton" href="https://docs.google.com/forms/d/e/1FAIpQLSfkI5EK1coWAZ55DL2utPvXBsR4IywY3B_KXGZ4ngQ7LEklYQ/viewform?usp=publish-editor" target="_blank" class="shimmer-btn py-4 text-lg inline-block w-full max-w-sm">
+                PROCEED TO CONNECTOR REGISTRATION
+            </a>
+        </div>
+    </div>
+  </div>
+
+  <script>
+    // --- CONFIGURATION ---
+    const CORRECT_CODE = "15D.League001";
+    const PASS_MARK = 80; // 80/100
+    
+    // The 7-Question Quiz and Answers
+    const QUIZ_DATA = [
+        {
+            q: "1. What is the designated title for a participant in this system?",
+            options: { A: "Affiliate", B: "Sales Representative", C: "Connector", D: "Partner" },
+            correct: "C"
+        },
+        {
+            q: "2. A Connector's value is based on which two key attributes?",
+            options: { A: "Attention and volume", B: "Access and judgment", C: "Recruiting and training", D: "Public promotion and outreach" },
+            correct: "B"
+        },
+        {
+            q: "3. How is a Direct Connector paid for introducing a full group vs. a single seat?",
+            options: { A: "Percentage for both full groups and single seats.", B: "A fixed, clear fee for both full groups and single seats.", C: "A percentage for a full group, and a fixed, clear fee for a single seat.", D: "A fixed fee for a full group, and a percentage for a single seat." },
+            correct: "C"
+        },
+        {
+            q: "4. A 'Connector of Connectors' earns a percentage of their recruit's earnings until what point?",
+            options: { A: "Until the recruit completes their first five introductions.", B: "Forever, as long as the recruit remains active.", C: "Until the original Connector's unique Connector Code is retired.", D: "Until the introduction value reaches the Terminal Value." },
+            correct: "D"
+        },
+        {
+            q: "5. What are the three specific requirements for a payment reference description when money is sent to the system?",
+            options: { A: "Name, full amount, and bank ID.", B: "The correct payment reference, the Connector Code, and a clear indication of single seat or group payment.", C: "The tax ID, company registration, and the full payment amount.", D: "The alignment status, required documents, and Connector Code." },
+            correct: "B"
+        },
+        {
+            q: "6. Based on the document, what is the best description for how a Connector receives their money/payouts?",
+            options: { A: "Payments must be made to a personal account only.", B: "The document specifies that payouts are handled quickly, but does not detail the specific account type for receiving earnings.", C: "Payouts are made daily to a company account only.", D: "Payouts are handled only after the Connector recruits a 'Connector of Connectors'." },
+            correct: "B"
+        },
+        {
+            q: "7. What is the document's rule for when the system recognizes that value is created and engages (i.e., earnings are tracked)?",
+            options: { A: "If a new Connector's documents are complete.", B: "If the Connector is not convincing anyone.", C: "If the system is not public-facing.", D: "If the sale passes through you." },
+            correct: "D"
+        }
+    ];
+
+    // --- ACCESS CODE FUNCTION (Case-Insensitive Fix) ---
+    function checkAccessCode() {
+        const input = document.getElementById('accessCodeInput');
+        const message = document.getElementById('accessMessage');
+        const dashboard = document.getElementById('connectorDashboard');
+        const accessGate = document.getElementById('accessGate');
+
+        message.classList.add('hidden');
+        
+        const userInput = input.value.trim().toUpperCase();
+        const requiredCode = CORRECT_CODE.toUpperCase();
+
+        if (userInput === requiredCode) {
+            accessGate.classList.add('hidden');
+            dashboard.classList.remove('hidden');
+            input.value = '';
+            renderQuiz();
+        } else {
+            message.textContent = "ACCESS DENIED: Code is incorrect. Please check your private invitation.";
+            message.classList.remove('hidden');
+            input.value = '';
+        }
+    }
+    
+    // --- UNLOCK QUIZ FUNCTION ---
+    function unlockQuiz() {
+        const quizContainer = document.getElementById('quizContainer');
+        const quizActivation = document.getElementById('quizActivation');
+        
+        quizActivation.classList.add('hidden');
+        quizContainer.classList.remove('hidden');
+        
+        quizContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // --- QUIZ RENDER FUNCTIONS ---
+    function renderQuiz() {
+        const quizForm = document.getElementById('quizForm');
+        quizForm.innerHTML = ''; 
+
+        QUIZ_DATA.forEach((data, index) => {
+            let optionsHtml = '';
+            for (const [key, value] of Object.entries(data.options)) {
+                const cleanValue = value.replace(/ \[\S+\]/g, ''); 
+                optionsHtml += `
+                    <label class="block text-sm py-3 px-4 transition-all rounded-lg cursor-pointer quiz-option" for="q${index}-${key}">
+                        <input type="radio" name="q${index}" id="q${index}-${key}" value="${key}" class="hidden" onclick="selectOption(this.parentElement)">
+                        <span class="font-bold text-yellow-300 mr-2">${key}.</span>
+                        <span class="font-light text-gray-200">${cleanValue}</span>
+                    </label>
+                `;
+            }
+
+            const questionBlock = `
+                <div class="bg-zinc-800/50 p-5 rounded-xl border border-zinc-700">
+                    <p class="text-white font-medium mb-4">${data.q}</p>
+                    <div class="space-y-3">
+                        ${optionsHtml}
+                    </div>
+                </div>
+            `;
+            quizForm.innerHTML += questionBlock;
+        });
+    }
+
+    function selectOption(labelElement) {
+        const parentDiv = labelElement.parentElement;
+        Array.from(parentDiv.children).forEach(child => {
+            child.classList.remove('selected');
+        });
+        labelElement.classList.add('selected');
+    }
+
+    // --- QUIZ SUBMIT FUNCTION (FIXED) ---
+    function submitQuiz() {
+        let score = 0;
+        const totalQuestions = QUIZ_DATA.length;
+        const pointsPerQuestion = 100 / totalQuestions; 
+        const quizForm = document.getElementById('quizForm');
+        const resultsDiv = document.getElementById('quizResults');
+        const signupArea = document.getElementById('signupArea');
+        
+        resultsDiv.classList.add('hidden');
+        signupArea.classList.add('hidden');
+        resultsDiv.innerHTML = '';
+        
+        let allAnswered = true;
+        QUIZ_DATA.forEach((data, index) => {
+            const selectedOption = quizForm.querySelector(`input[name="q${index}"]:checked`);
+            if (selectedOption) {
+                // Clear the temporary selection styles before showing results
+                const optionLabels = quizForm.querySelectorAll(`label[for^="q${index}-"]`);
+                optionLabels.forEach(label => label.classList.remove('selected'));
+                
+                if (selectedOption.value === data.correct) {
+                    score += pointsPerQuestion;
+                }
+            } else {
+                allAnswered = false;
+            }
+        });
+
+        if (!allAnswered) {
+            resultsDiv.textContent = "Please answer all 7 questions before submitting.";
+            resultsDiv.className = 'mt-6 p-4 rounded-lg text-center font-semibold text-red-400 bg-red-900/50';
+            resultsDiv.classList.remove('hidden');
+            return;
+        }
+
+        const finalScore = Math.round(score);
+
+        // Display Results
+        resultsDiv.innerHTML = `
+            <p class="oswald-thin text-3xl mb-2">${finalScore} / 100</p>
+            <p class="text-lg">Your Score: <strong>${finalScore}%</strong></p>
+        `;
+
+        if (finalScore >= PASS_MARK) {
+            // PASS: Show congratulations and sign-up button
+            resultsDiv.innerHTML += `
+                <p class="text-green-400 mt-3 oswald-thin text-2xl">CONGRATULATIONS!</p>
+                <p class="text-green-400 mt-1">STATUS: ALIGNMENT CONFIRMED (PASS)</p>
+            `;
+            resultsDiv.className = 'mt-6 p-4 rounded-lg text-center font-semibold text-green-400 bg-green-900/50';
+            signupArea.classList.remove('hidden');
+            // Scroll to the sign-up button
+            signupArea.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+            // FAIL: Show failure message, corrections, and retake button
+            resultsDiv.innerHTML += `
+                <p class="text-red-400 mt-3 oswald-thin text-2xl">ALIGNMENT REQUIRED</p>
+                <p class="text-red-400 mt-1">STATUS: FAILED (SCORE BELOW ${PASS_MARK}%)</p>
+                <p class="text-sm text-gray-300 mt-4">Please review the manifesto and the briefing video, then attempt the corrections below before retaking the test.</p>
+                ${showCorrections()}
+            `;
+            resultsDiv.className = 'mt-6 p-4 rounded-lg text-center font-semibold text-red-400 bg-red-900/50';
+            const retryButton = document.createElement('button');
+            retryButton.textContent = "RETAKE QUIZ";
+            retryButton.onclick = () => {
+                resultsDiv.classList.add('hidden');
+                quizForm.reset();
+                quizForm.scrollIntoView({ behavior: 'smooth' });
+                quizForm.querySelectorAll('.quiz-option').forEach(el => el.classList.remove('selected'));
+            };
+            retryButton.className = 'shimmer-btn mt-6';
+            resultsDiv.appendChild(retryButton);
+        }
+        resultsDiv.classList.remove('hidden');
+    }
+
+    // --- CORRECTIONS FUNCTION (FIXED BOLDING) ---
+    function showCorrections() {
+        let correctionHtml = '<div class="mt-6 text-left border-t border-zinc-700 pt-4">';
+        correctionHtml += '<p class="oswald-thin text-lg text-yellow-300 mb-3">CORRECTIONS & REFERENCE:</p>';
+        QUIZ_DATA.forEach((data, index) => {
+            const correctOptionText = data.options[data.correct];
+            correctionHtml += `
+                <div class="mb-3 p-3 bg-zinc-800 rounded">
+                    <p class="text-sm font-bold text-yellow-300">${index + 1}. ${data.q}</p>
+                    <p class="text-sm text-green-400 mt-1"><strong>Correct Answer:</strong> ${data.correct} - ${correctOptionText}</p>
+                </div>
+            `;
+        });
+        correctionHtml += '</div>';
+        return correctionHtml;
+    }
+
+    // --- INITIAL SETUP ---
+    // Make the checkAccessCode function available when the Enter key is pressed in the input field
+    document.getElementById('accessCodeInput').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            checkAccessCode();
+        }
+    });
+
+  </script>
+</body>
+</html>
