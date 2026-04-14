@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>SKY PARTY™ | The Private Social Circuit</title>
+
+    <!-- Premium Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Montserrat:wght@100;300;400;600&family=Lexend:wght@200;300;400&display=swap" rel="stylesheet" />
+
+    <style>
+        :root {
+            --gold: #b08724;
+            --soft-gold: #dfce6b;
+            --deep-black: #030303;
+            --charcoal: #0a0a0a;
+            --glass: rgba(255, 255, 255, 0.02);
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        *, *::before, *::after { box-sizing: border-box; }
+        
+        body {
+            margin: 0; padding: 0;
+            background-color: var(--deep-black);
+            color: #e0e0e0; 
+            font-family: 'Lexend', sans-serif;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            line-height: 1.8;
+        }
+
+        /* Hero Immersive Layer */
+        .hero-viewport {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://res.cloudinary.com/dw9m06rgf/image/upload/v1772537505/1772532021422_uk7ia5.jpg');
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
+            transition: transform 0.5s ease-out, filter 1s ease;
+            will-change: transform, filter;
+        }
+
+        .scroll-down-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Montserrat';
+            font-size: 9px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            opacity: 0.6;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translate(-50%, 0); }
+            40% { transform: translate(-50%, -10px); }
+            60% { transform: translate(-50%, -5px); }
+        }
+
+        /* Main Scrollable Layout */
+        .main-scroller {
+            position: relative;
+            z-index: 2;
+            background: linear-gradient(to bottom, transparent 0vh, var(--deep-black) 100vh);
+        }
+
+        .container { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            padding: 0 30px; 
+        }
+
+        /* Header Styling */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .title {
+            font-family: 'Canter Bold', sans-serif;
+            font-size: clamp(4rem, 12vw, 8rem);
+            letter-spacing: 15px;
+            text-transform: uppercase;
+            color: var(--gold); 
+            line-height: 0.85;
+            margin: 0;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        }
+
+        .subtitle {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 12px;
+            font-size: clamp(0.7rem, 2vw, 0.9rem);
+            color: var(--soft-gold); 
+            margin-top: 20px;
+            background: rgba(0,0,0,0.4);
+            padding: 5px 20px;
+            backdrop-filter: blur(5px);
+        }
+
+        /* Sectional Styling */
+        section { 
+            margin: 150px 0; 
+            opacity: 0;
+            transform: translateY(30px);
+            transition: var(--transition);
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400; text-transform: uppercase;
+            font-size: 14px; letter-spacing: 10px;
+            color: var(--gold); text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .gold-divider {
+            width: 60px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            margin: 0 auto 50px auto;
+        }
+
+        .section-body {
+            font-family: 'Lexend', sans-serif;
+            font-weight: 200;
+            font-size: 1.2rem;
+            line-height: 2.2;
+            color: #bbb;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Virtual Tour - The Jewel Box */
+        .tour-wrap {
+            position: relative;
+            background: #000;
+            border: 1px solid rgba(176, 135, 36, 0.3);
+            padding: 15px;
+            box-shadow: 0 50px 100px rgba(0,0,0,0.8);
+        }
+
+        .tour-status {
+            position: absolute;
+            top: -12px; left: 30px;
+            background: var(--deep-black);
+            padding: 0 15px;
+            font-family: 'Montserrat';
+            font-size: 9px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            z-index: 5;
+        }
+
+        .pulse-dot {
+            width: 6px; height: 6px; background: #ff3e3e; border-radius: 50%;
+            animation: pulse-red 2s infinite;
+        }
+
+        @keyframes pulse-red {
+            0% { transform: scale(0.9); opacity: 1; }
+            70% { transform: scale(2); opacity: 0; }
+            100% { transform: scale(0.9); opacity: 0; }
+        }
+
+        .tour-frame {
+            width: 100%; height: 0; padding-bottom: 50%;
+            position: relative; overflow: hidden;
+        }
+
+        .tour-iframe {
+            position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%; border: none;
+            filter: grayscale(20%);
+        }
+
+        /* Manifest Slider - Luxury Tiers */
+        .manifest-container {
+            padding: 40px 0;
+        }
+
+        .manifest-slider {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0 60px 0;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+        }
+        .manifest-slider::-webkit-scrollbar { display: none; }
+
+        .manifest-card {
+            flex: 0 0 300px;
+            background: var(--charcoal);
+            border: 1px solid #1a1a1a;
+            padding: 60px 40px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+            position: relative;
+        }
+
+        .manifest-card::after {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            border: 1px solid var(--gold); opacity: 0; transition: var(--transition);
+        }
+
+        .manifest-card.active {
+            background: #0d0d0d;
+            transform: scale(1.05);
+        }
+
+        .manifest-card.active::after { opacity: 1; transform: scale(1.02); }
+
+        .m-amount {
+            font-family: 'Canter Bold';
+            font-size: 4rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .m-tier {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #fff;
+        }
+
+        .m-guests {
+            font-family: 'Montserrat';
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #555;
+            margin-top: 15px;
+        }
+
+        /* Final CTA */
+        .mission-summary {
+            font-family: 'Playfair Display';
+            font-style: italic;
+            font-size: 1.8rem;
+            text-align: center;
+            color: var(--soft-gold);
+            margin: 40px 0;
+            opacity: 0.8;
+        }
+
+        .cta-button {
+            display: block;
+            width: fit-content;
+            margin: 0 auto;
+            background: var(--gold);
+            color: #000;
+            padding: 25px 60px;
+            text-decoration: none;
+            font-family: 'Montserrat';
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            transition: var(--transition);
+            border: 1px solid transparent;
+        }
+
+        .cta-button:hover {
+            background: transparent;
+            color: var(--gold);
+            border-color: var(--gold);
+            letter-spacing: 10px;
+        }
+
+        footer {
+            padding: 80px 0;
+            text-align: center;
+            font-size: 10px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #333;
+        }
+
+        @media (max-width: 768px) {
+            .title { font-size: 3.5rem; }
+            .tour-frame { padding-bottom: 75%; }
+            .manifest-card { flex: 0 0 260px; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-bg" id="heroBg"></div>
+
+    <div class="main-scroller">
+        
+        <header>
+            <h1 class="title">The Sky Party<br>Portfolio</h1>
+            <p class="subtitle">Lagos &bull; Abuja &bull; The Circuit</p>
+            <div class="scroll-down-hint">Explore the Architecture</div>
+        </header>
+
+        <div class="container">
+            
+            <section class="reveal">
+                <h2 class="section-title">The Architecture of Connection</h2>
+                <div class="gold-divider"></div>
+                <p class="section-body">
+                    Step beyond the standard and into a meticulously curated social ecosystem. Your journey begins at the Private Terminal, where discretion is the primary directive. <br /><br />
+                    Complete your circuit with a two-night residency in our premier Victoria Island private sanctuaries — tailored for those who require an atmosphere of absolute refinement.
+                </p>
+            </section>
+
+            <section class="reveal">
+                <h2 class="section-title">Digital Cabin Inspection</h2>
+                <div class="tour-wrap">
+                    <div class="tour-status">
+                        <div class="pulse-dot"></div>
+                        Live 360&deg; Virtual Asset
+                    </div>
+                    <div class="tour-frame">
+                        <iframe class="tour-iframe" src="https://www.eyerevolution.co.uk/tours/vistajet/global-6000/" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </section>
+
+            <section class="reveal">
+                <h2 class="section-title">Define Your Manifest</h2>
+                <div class="manifest-container">
+                    <div class="manifest-slider" id="slider"></div>
+                </div>
+                
+                <div class="mission-summary" id="missionSummary">Initialization Required</div>
+
+                <a href="https://www.skyparty.name.ng/payment" class="cta-button" id="ctaBtn">
+                    Request Allocation
+                </a>
+            </section>
+
+            <footer>
+                &bull; The Private Circuit &bull; 15D Wings &bull; MM2 Private Terminal
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        // MANIFEST DATA
+        const manifestOptions = [
+            { guests: 1, headRate: 50000, label: "Sovereign Solo" },
+            { guests: 2, headRate: 25500, label: "Duumvirate" },
+            { guests: 4, headRate: 13000, label: "The Quartet" },
+            { guests: 6, headRate: 8400,  label: "Elite Manifest" },
+            { guests: 8, headRate: 6500,  label: "Circuit Social" }
+        ];
+
+        const slider = document.getElementById('slider');
+        const summary = document.getElementById('missionSummary');
+        const cta = document.getElementById('ctaBtn');
+        const heroBg = document.getElementById('heroBg');
+
+        // PARALLAX & SCROLL EFFECTS
+        window.addEventListener('scroll', () => {
+            const scrollVal = window.scrollY;
+            const opacity = 1 - (scrollVal / 700);
+            const scale = 1 + (scrollVal / 2000);
+            const blur = scrollVal / 100;
+            
+            heroBg.style.transform = `scale(${scale})`;
+            heroBg.style.filter = `brightness(${opacity + 0.2}) blur(${blur}px)`;
+            
+            // Section reveals
+            document.querySelectorAll('.reveal').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight * 0.85) {
+                    el.classList.add('visible');
+                }
+            });
+        });
+
+        // BUILD SLIDER
+        function buildManifest() {
+            manifestOptions.forEach((opt, i) => {
+                const card = document.createElement('div');
+                card.className = 'manifest-card';
+                card.innerHTML = `
+                    <div class="m-tier">${opt.label}</div>
+                    <div class="m-amount">$${opt.headRate.toLocaleString()}</div>
+                    <div class="m-guests">${opt.guests} Guest${opt.guests > 1 ? 's' : ''} Allocation</div>
+                `;
+                card.onclick = () => selectTier(i, card);
+                slider.appendChild(card);
+            });
+
+            // Initial auto-scroll hint
+            setTimeout(() => {
+                slider.scrollTo({ left: 100, behavior: 'smooth' });
+                setTimeout(() => slider.scrollTo({ left: 0, behavior: 'smooth' }), 800);
+            }, 2500);
+        }
+
+        function selectTier(index, el) {
+            document.querySelectorAll('.manifest-card').forEach(b => b.classList.remove('active'));
+            el.classList.add('active');
+            
+            const selection = manifestOptions[index];
+            const gross = selection.guests * selection.headRate;
+
+            summary.innerHTML = `Total Mission Gross: $${gross.toLocaleString()} USD`;
+            cta.innerHTML = `Confirm $${gross.toLocaleString()} Manifest`;
+            
+            // Haptic-like feel
+            summary.style.transform = 'scale(1.05)';
+            setTimeout(() => summary.style.transform = 'scale(1)', 200);
+        }
+
+        buildManifest();
+    </script>
+</body>
+</html>
+
