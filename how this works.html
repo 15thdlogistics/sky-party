@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Party™ | Operational Protocol</title>
+    
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600&family=Lexend:wght@300;400;700&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif']
+                    },
+                    keyframes: {
+                        fadeIn: { '0%': { opacity: '0', transform: 'translateY(15px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+                        shimmer: { '0%, 100%': { backgroundPosition: '0% 50%' }, '50%': { backgroundPosition: '100% 50%' } }
+                    },
+                    animation: { 
+                        fadeIn: 'fadeIn 1s ease-out forwards',
+                        shimmer: 'shimmer 3s ease-in-out infinite'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #fff; 
+            -webkit-font-smoothing: antialiased; 
+            font-family: 'Lexend', sans-serif;
+        }
+        .canter-title { font-family: 'Canter Bold', sans-serif; letter-spacing: 4px; }
+        
+        .protocol-card {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(176, 135, 36, 0.08);
+            padding: 3rem;
+            transition: all 0.5s ease;
+        }
+
+        .shimmer-btn {
+            background: linear-gradient(90deg, #b08724 0%, #dfce6b 50%, #b08724 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        .step-number {
+            font-family: 'Canter Bold', sans-serif;
+            color: #b08724;
+            font-size: 3rem;
+            line-height: 1;
+        }
+    </style>
+</head>
+<body class="bg-black text-white antialiased overflow-x-hidden">
+
+    <div class="min-h-screen flex flex-col items-center">
+
+        <header class="p-8 flex justify-between items-center w-full max-w-6xl z-50">
+            <div class="canter-title text-3xl md:text-5xl text-[#b08724]">SKY PARTY™</div>
+            <nav class="hidden md:flex space-x-12 text-[10px] tracking-[0.4em] uppercase font-montserrat text-gray-500">
+                <a href="/about-us" class="hover:text-white transition">The Legacy</a>
+                <a href="/invite" class="hover:text-white transition text-white">The Protocol</a>
+                <a href="/contact" class="hover:text-white transition">Liaison</a>
+            </nav>
+            <a href="/payment" class="shimmer-btn px-6 py-2.5 text-black text-[9px] font-bold md:hidden">
+                RESERVE
+            </a>
+        </header>
+
+        <main class="w-full max-w-4xl mx-auto py-16 md:py-24 px-6 space-y-16">
+
+            <section class="text-center mb-20 animate-fadeIn">
+                <p class="text-[10px] text-[#b08724] font-montserrat tracking-[0.6em] mb-6 uppercase">Operational Framework</p>
+                <h1 class="canter-title text-5xl md:text-8xl leading-tight uppercase">
+                    Execution & Logistics
+                </h1>
+                <p class="text-gray-400 text-sm md:text-base mt-6 font-light tracking-wide max-w-xl mx-auto leading-relaxed">
+                    A frictionless interface between private carriage and curated experience. 
+                    Bring your asset, or utilize our registry.
+                </p>
+            </section>
+
+            <section class="protocol-card rounded-sm shadow-2xl relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-[#b08724] to-transparent opacity-30"></div>
+                
+                <h2 class="canter-title text-3xl md:text-4xl text-[#b08724] mb-12 text-center uppercase tracking-widest">
+                    The Carriage Protocol
+                </h2>
+
+                <div class="grid md:grid-cols-3 gap-12 text-center relative z-10">
+                    <div class="space-y-4">
+                        <div class="step-number">01</div>
+                        <h3 class="font-montserrat text-[11px] tracking-widest uppercase text-white">Unified Settlement</h3>
+                        <p class="text-[11px] leading-relaxed text-gray-500 font-light uppercase tracking-tighter">A single priority transaction initiates the sequence.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="step-number">02</div>
+                        <h3 class="font-montserrat text-[11px] tracking-widest uppercase text-white">Direct Allocation</h3>
+                        <p class="text-[11px] leading-relaxed text-gray-500 font-light uppercase tracking-tighter">Automatic split: Logistics to Carrier / Curation to 15D.</p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="step-number">03</div>
+                        <h3 class="font-montserrat text-[11px] tracking-widest uppercase text-white">Manifest Digitalization</h3>
+                        <p class="text-[11px] leading-relaxed text-gray-500 font-light uppercase tracking-tighter">Secure charter agreements generated and verified in 60s.</p>
+                    </div>
+                </div>
+
+                <div class="mt-16 text-center border-t border-zinc-900 pt-8">
+                    <p class="text-[10px] text-zinc-600 italic tracking-widest uppercase">
+                        Registry Support: Seamless connection with NCAA-licensed AOC holders for principals without existing assets.
+                    </p>
+                </div>
+            </section>
+
+            <div class="space-y-6">
+                <h2 class="canter-title text-3xl text-zinc-500 uppercase tracking-widest mb-10">Governance & Clarification</h2>
+                
+                <div class="protocol-card !p-8">
+                    <h3 class="font-montserrat text-[10px] tracking-[0.3em] text-[#b08724] mb-3 uppercase">I. Definition of Service</h3>
+                    <p class="text-sm font-light text-gray-400 leading-relaxed">
+                        Sky Party™ is an atmospheric production house. We orchestrate the sound, the light, the manifest, and the culinary narrative within a private aviation environment.
+                    </p>
+                </div>
+
+                <div class="protocol-card !p-8">
+                    <h3 class="font-montserrat text-[10px] tracking-[0.3em] text-[#b08724] mb-3 uppercase">II. Manifest Vetting</h3>
+                    <p class="text-sm font-light text-gray-400 leading-relaxed">
+                        All circuit participants undergo secondary identity verification. Access is reserved for confirmed principals on the private registry.
+                    </p>
+                </div>
+
+                <div class="protocol-card !p-8">
+                    <h3 class="font-montserrat text-[10px] tracking-[0.3em] text-[#b08724] mb-3 uppercase">III. Financial Architecture</h3>
+                    <p class="text-sm font-light text-gray-400 leading-relaxed">
+                        Utilizing secure automated escrow, your settlement is bifurcated instantly to ensure regulatory compliance with air carriers.
+                    </p>
+                </div>
+
+                <div class="protocol-card !p-8">
+                    <h3 class="font-montserrat text-[10px] tracking-[0.3em] text-[#b08724] mb-3 uppercase">IV. Vetting Windows</h3>
+                    <p class="text-sm font-light text-gray-400 leading-relaxed">
+                        Standard verification: 24 Hours. Priority Allocation: Immediate.
+                    </p>
+                </div>
+            </div>
+
+        </main>
+
+        <section class="w-full bg-[#080808] border-t border-zinc-900 py-32 px-6">
+            <div class="max-w-4xl mx-auto text-center">
+                <h2 class="canter-title text-5xl md:text-7xl uppercase leading-none mb-10">
+                    Initiate <br> <span class="text-[#b08724]">Manifest</span>
+                </h2>
+                <a href="/payment" class="shimmer-btn inline-block px-16 py-6 text-black font-bold text-xs shadow-2xl">
+                    RESERVE ALLOCATION
+                </a>
+            </div>
+        </section>
+
+        <footer class="bg-black py-20 text-center text-zinc-700 text-[9px] tracking-[0.4em] font-montserrat w-full border-t border-zinc-900">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="flex flex-wrap justify-center gap-10 mb-12">
+                    <a href="#" class="hover:text-white transition">Terms of Protocol</a>
+                    <a href="/terms-of-service" class="hover:text-white transition">Privacy Registry</a>
+                    <a href="/privacy-policy" class="hover:text-white transition">NDA Standards</a>
+                    <a href="#" class="hover:text-white transition">Carrier Verification</a>
+                </div>
+                <p class="mb-4 text-zinc-500">
+                    <strong class="text-zinc-400">REGULATORY DISCLOSURE:</strong> SKY PARTY™ FUNCTIONS AS AN EVENT CURATOR. WE DO NOT SELL, OPERATE, OR BROKER FLIGHTS. CARRIAGE CONTRACTS ARE HELD DIRECTLY WITH NCAA-LICENSED AOC HOLDERS.
+                </p>
+                <p>© 2025 SKY PARTY™ | THE PRIVATE CIRCUIT | 15D GROUP (SKY PARTY LTD (RC 8997727)</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
