@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Protocol | 15D Sky Party™</title>
+    <!-- Brand Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#D4AF37',
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 1.2s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeIn: {
+                            '0%': { opacity: '0', transform: 'translateY(10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #000000;
+            --card-bg: #0a0a0a;
+            --border: #1a1a1a;
+        }
+
+        body { 
+            background-color: var(--dark-bg); 
+            font-family: 'Lexend', sans-serif; 
+            color: #ffffff; 
+            -webkit-font-smoothing: antialiased;
+            line-height: 1.8;
+        }
+
+        .header-font {
+            font-family: 'Canter Bold', sans-serif;
+            text-transform: uppercase;
+            font-weight: normal; 
+        }
+
+        .shimmer {
+            background: linear-gradient(to right, var(--gold) 0%, #ffffff 20%, var(--gold) 40%, var(--gold) 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .content-container {
+            max-width: 900px;
+            margin: auto;
+            padding: 60px 24px;
+        }
+
+        .policy-section {
+            margin-bottom: 4rem;
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .policy-section h2 {
+            font-family: 'Canter Bold', sans-serif;
+            font-size: 2.2rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .policy-section h2::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: linear-gradient(to right, #1a1a1a, transparent);
+        }
+
+        .protocol-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .protocol-list li {
+            position: relative;
+            padding-left: 2rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #a1a1aa;
+        }
+
+        .protocol-list li::before {
+            content: '/';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+        }
+
+        .info-card {
+            background: #050505;
+            border: 1px solid #111;
+            padding: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        strong { color: #fff; font-weight: 500; }
+
+        .nav-link {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #52525b;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover { color: var(--gold); }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #1a1a1a; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+        
+        <!-- Luxury Branding Header -->
+        <header class="text-center mb-24 space-y-6">
+            <div class="header-font text-5xl md:text-7xl tracking-[15px] shimmer">SKY PARTY</div>
+            <div class="flex items-center justify-center gap-6">
+                <span class="h-[1px] w-12 bg-zinc-800"></span>
+                <p class="text-[11px] font-montserrat tracking-[6px] text-gold uppercase font-bold">Privacy Protocol</p>
+                <span class="h-[1px] w-12 bg-zinc-800"></span>
+            </div>
+            <div class="pt-8 flex flex-col items-center gap-2">
+                <p class="text-[10px] text-zinc-600 font-montserrat tracking-[2px] uppercase">Official Directive: 02.01.2026</p>
+                <p class="text-[9px] text-zinc-700 font-montserrat tracking-[1px] uppercase italic">RC 8997727 | 15th Dimension Group</p>
+            </div>
+        </header>
+
+        <!-- 01 Introduction -->
+        <section class="policy-section">
+            <h2 class="header-font">01. Directive Scope</h2>
+            <p class="text-zinc-400 font-light text-sm">
+                This Privacy Protocol outlines the strictly governed procedures by which Sky Party LTD (a 15D Group subsidiary) handles personal identifiers. By engaging with our high-altitude networking circuit, you consent to data processing architectures designed for absolute security and regulatory compliance.
+            </p>
+            <div class="info-card">
+                <p class="text-[10px] font-montserrat tracking-[2px] text-zinc-500 uppercase mb-4">Regulatory Framework Adherence:</p>
+                <ul class="protocol-list">
+                    <li>Nigeria Data Protection Regulation (NDPR, 2019)</li>
+                    <li>General Data Protection Regulation (GDPR, EU 2018)</li>
+                    <li>NCAA Civil Aviation Security Mandates</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 02 Intelligence Collection -->
+        <section class="policy-section">
+            <h2 class="header-font">02. Information Acquisition</h2>
+            <p class="text-zinc-400 font-light text-sm mb-6">
+                To maintain the integrity of the 15D Circuit, we process specific data categories:
+            </p>
+            <ul class="protocol-list space-y-4">
+                <li><strong>Sovereign Identity:</strong> Full legal nomenclature, date of birth, and biometric government-issued credentials for manifest verification.</li>
+                <li><strong>Secure Liaison:</strong> Encrypted email channels, verified mobile coordinates, and emergency contact protocols.</li>
+                <li><strong>Fiscal Intelligence:</strong> Tokenized transaction records and bank-endorsed payment confirmations.</li>
+                <li><strong>Manifest Preferences:</strong> Flight deck catering requirements, dietary logic, and seat tier selections.</li>
+                <li><strong>Environmental Metadata:</strong> Device identifiers, IP geolocation, and Google Cloud / Firebase interaction analytics.</li>
+            </ul>
+        </section>
+
+        <!-- 03 Purpose -->
+        <section class="policy-section">
+            <h2 class="header-font">03. Logic of Processing</h2>
+            <p class="text-zinc-400 font-light text-sm">
+                Data is utilized exclusively for:
+            </p>
+            <div class="grid md:grid-cols-2 gap-4 mt-6">
+                <div class="p-6 border border-zinc-900 bg-zinc-950/30">
+                    <p class="text-[9px] font-montserrat text-gold uppercase tracking-[2px] mb-2">Institutional</p>
+                    <p class="text-xs text-zinc-500 font-light">Verification of event manifest and processing of logistics with NCAA-licensed aviation partners.</p>
+                </div>
+                <div class="p-6 border border-zinc-900 bg-zinc-950/30">
+                    <p class="text-[9px] font-montserrat text-gold uppercase tracking-[2px] mb-2">Compliance</p>
+                    <p class="text-xs text-zinc-500 font-light">Strict adherence to ICAO safety briefings and Nigerian Corporate Law requirements.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 Secure Architecture -->
+        <section class="policy-section">
+            <h2 class="header-font">04. Data Sovereignty & Security</h2>
+            <p class="text-zinc-400 font-light text-sm leading-relaxed">
+                We utilize military-grade encryption architectures. Your intelligence is stored within <strong>Google Firebase EU-Compliant Nodes</strong>. Access is restricted to 15D Security Officers via multi-factor biometric authentication. 
+            </p>
+            <div class="mt-8 border-l border-gold/30 pl-8 space-y-4">
+                <p class="text-[11px] text-zinc-500 uppercase tracking-widest font-bold">Retention Policy:</p>
+                <p class="text-xs text-zinc-600">
+                    Manifest intelligence is purged <strong>90 days</strong> post-event. Fiscal records are archived for <strong>5 years</strong> as required by Nigerian financial regulatory statutes.
+                </p>
+            </div>
+        </section>
+
+        <!-- 05 Liaison -->
+        <section class="policy-section">
+            <h2 class="header-font">05. Intelligence Requests</h2>
+            <p class="text-zinc-400 font-light text-sm mb-8">
+                Under NDPR and GDPR, members retain the right to access, rectify, or demand the deletion of their personal intelligence from the 15D Circuit database.
+            </p>
+            <div class="text-center">
+                <a href="mailto:privacy@app.skyparty.name.ng" class="inline-block border border-gold px-12 py-5 text-[10px] font-montserrat tracking-[3px] text-gold uppercase hover:bg-gold hover:text-black transition-all">
+                    Initiate Privacy Request
+                </a>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="mt-32 pt-20 border-t border-zinc-900">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-8 opacity-40">
+                <div class="header-font text-2xl tracking-[10px]">15D GROUP</div>
+                <div class="flex gap-10">
+                    <a href="www.skyparty.name.ng/legal" class="nav-link">Legal Portal</a>
+                    <a href="/terms-of-service" class="nav-link">Terms of Service</a>
+                </div>
+            </div>
+            <p class="text-center text-[9px] text-zinc-700 font-montserrat tracking-[2px] mt-16 uppercase">
+                &copy; 2026 Sky Party LTD (RC 8997727). A subsidiary of 15th Dimension Group. <br>
+                Encryption active. Secure portal protocol v4.2
+            </p>
+        </footer>
+
+    </div>
+
+</body>
+</html>
