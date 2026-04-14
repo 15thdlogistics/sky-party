@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Droid Concierge | 15D Sky Party™</title>
+    <!-- Brand Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#D4AF37',
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #000000;
+            --card-bg: #0a0a0a;
+            --border: #1a1a1a;
+        }
+
+        body { 
+            background-color: var(--dark-bg); 
+            font-family: 'Lexend', sans-serif; 
+            color: #ffffff; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header-font {
+            font-family: 'Canter Bold', sans-serif;
+            text-transform: uppercase;
+            font-weight: normal; 
+        }
+
+        .shimmer {
+            background: linear-gradient(to right, var(--gold) 0%, #ffffff 20%, var(--gold) 40%, var(--gold) 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .luxury-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #chat-messages::-webkit-scrollbar { width: 4px; }
+        #chat-messages::-webkit-scrollbar-track { background: #000; }
+        #chat-messages::-webkit-scrollbar-thumb { background: var(--gold); border-radius: 10px; }
+
+        .message-entrance {
+            animation: slideUp 0.4s cubic-bezier(0, 0.5, 0.5, 1) forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .input-glow:focus {
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+        }
+
+        .typing-indicator span {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            margin-right: 2px;
+            animation: wave 1.3s linear infinite;
+        }
+        .typing-indicator span:nth-child(2) { animation-delay: -1.1s; }
+        .typing-indicator span:nth-child(3) { animation-delay: -0.9s; }
+
+        @keyframes wave {
+            0%, 60%, 100% { transform: initial; }
+            30% { transform: translateY(-5px); }
+        }
+
+        .concierge-link {
+            color: var(--gold);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="flex flex-col min-h-screen">
+
+    <header class="p-6 md:p-8 flex justify-between items-center z-50 bg-black border-b border-zinc-900">
+        <div class="header-font text-3xl md:text-4xl tracking-widest shimmer">SKY PARTY</div>
+        <div class="hidden md:block font-montserrat text-[10px] tracking-[4px] text-zinc-500 uppercase">
+            15th Dimension Logistics Liaison
+        </div>
+    </header>
+
+    <main class="flex-1 flex items-center justify-center p-4 md:p-8">
+        <div id="chatbot-container" class="w-full max-w-lg luxury-card h-[700px] flex flex-col relative shadow-2xl overflow-hidden">
+            
+            <div id="chat-header" class="p-6 border-b border-zinc-900 flex items-center justify-between">
+                <div>
+                    <h2 class="header-font text-2xl tracking-widest shimmer">SKY DROID</h2>
+                    <p class="text-[9px] font-montserrat tracking-[2px] text-zinc-500 uppercase">CALIBRATED PROTOCOL v4.2</p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <span class="text-[9px] font-montserrat text-gold uppercase tracking-tighter">Verified Connection</span>
+                    <div class="h-2 w-2 rounded-full bg-gold animate-pulse"></div>
+                </div>
+            </div>
+
+            <div id="chat-messages" class="flex-1 p-6 overflow-y-auto flex flex-col space-y-6"></div>
+
+            <div class="px-6 py-4 bg-black/50 border-t border-zinc-900">
+                <div id="quickReplies" class="flex flex-wrap gap-2"></div>
+            </div>
+
+            <div id="chat-input-area" class="p-4 bg-zinc-950 flex items-center border-t border-zinc-900">
+                <input type="text" id="chat-input" autocomplete="off" placeholder="Inquire about tarmac protocols..." 
+                       class="flex-1 bg-transparent border-b border-zinc-800 p-3 text-sm focus:outline-none input-glow transition-all font-lexend text-white placeholder-zinc-700">
+                <button id="chat-send" class="ml-4 p-3 text-gold hover:text-white transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                    </svg>
+                </button>
+            </div>
+
+            <div class="p-3 text-center text-[9px] font-montserrat tracking-widest text-zinc-600 border-t border-zinc-900">
+                SECURE CHANNEL: <span class="text-zinc-500">15TH-DIMENSION-ALPHA</span>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-black py-16 border-t border-zinc-900 text-center text-zinc-500 font-lexend px-6">
+        <div class="max-w-4xl mx-auto space-y-8">
+            <div class="flex flex-wrap justify-center gap-6 text-[10px] font-montserrat tracking-[2px] uppercase text-zinc-400">
+                <a href="https://www.skyparty.name.ng/terms-of-service" class="hover:text-gold transition-colors">Terms of Service</a>
+                <a href="https://www.skyparty.name.ng/privacy-policy" class="hover:text-gold transition-colors">Privacy Policy</a>
+                <a href="https://www.skyparty.name.ng/legal" class="hover:text-gold transition-colors">NDA Policy</a>
+                <a href="https://www.skyparty.name.ng/complaints" class="hover:text-gold transition-colors">Grievance Process</a>
+            </div>
+            
+            <div class="text-xs leading-relaxed font-light space-y-4">
+                <p class="text-zinc-400 font-medium tracking-widest">15D SKY PARTY IS NOT YET AN AIRLINE.</p>
+                <p>
+                    <span class="text-zinc-200">Legal Notice:</span> 15D Sky Party™ is an exclusive lifestyle experience brand under the 15th Dimension Group. All aviation services are provided by NCAA-licensed third-party air carriers. 15D does not own or operate aircraft. 
+                </p>
+                <p>
+                    &copy; 2026 15D Sky Party™. All rights reserved. SKY PARTY LTD (TC 8997727)<br>
+                    Carrier Compliance: <a href="mailto:compliance@skyparty.name.ng" class="text-gold">compliance@skyparty.name.ng</a>.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const knowledgeBase = [
+            {
+                keys: ["what is", "experience", "venture", "concept"],
+                response: "The 15D Sky Party™ is a restricted-access lifestyle circuit that transcends traditional luxury. It is a high-altitude networking environment curated by 15th Dimension Group, featuring commercial charter flights managed by licensed carriers. It is where power meets the clouds."
+            },
+            {
+                keys: ["price", "cost", "how much", "naira", "payment", "allocation fee"],
+                response: "Seat allocations for the upcoming circuit are tiered between <strong>$6500 USD for a group of 10 and $8000 USD for a single seat</strong>. This is an all-inclusive logistical fee covering gourmet catering, premium entertainment, and the flight experience. Allocations adhere strictly to the refund policy"
+            },
+            {
+                keys: ["ncaa", "regulatory", "compliance", "safe", "carrier", "legal"],
+                response: "Our operations are strictly governed by Nigerian Civil Aviation Authority (NCAA) standards. While 15D curates the experience, the flight logistics are executed by duly licensed Nigerian carriers. Safety protocols match the highest international commercial aviation standards. For technical carrier data, contact <a href='mailto:compliance@skyparty.name.ng' class='concierge-link'>Compliance</a>."
+            },
+            {
+                keys: ["nda", "privacy", "camera", "secret", "confidential"],
+                response: "Privacy is our primary asset. All participants must execute a binding <strong>Non-Disclosure Agreement (NDA)</strong>. No unauthorized photography or data transmission is permitted during the flight. We protect the identities of our global icons and industry titans with multi-layered security protocols."
+            },
+            {
+                keys: ["book", "join", "register", "attend", "invite"],
+                response: "Attendance is via invitation only. If you have a referral, proceed to <strong>https://www.skyparty.name.ng/invite</strong> to begin the biometric and credentialing process. Our Sky Managers will review your application within 12 hours."
+            },
+            {
+                keys: ["human", "agent", "concierge", "person", "live", "talk to someone", "real"],
+                response: "Understood. I am escalating this to the 15th Dimension Logistics Desk. A Live Concierge is standing by to assist with your specific manifest requirements. <br><br> <a href='#' onclick='triggerEscalation()' class='concierge-link'>Click here to open a direct channel with Live Logistics.</a>"
+            },
+            {
+                keys: ["hello", "hi", "greeting", "wassup", "Whatsup", "How Far", "howfar"],
+                response: "Identification accepted. I am Sky Droid v4.2. State your inquiry regarding the 15D Sky Party manifest."
+            }
+        ];
+
+        const messagesEl = document.getElementById("chat-messages");
+        const inputEl = document.getElementById("chat-input");
+        const sendBtn = document.getElementById("chat-send");
+        const quickRepliesEl = document.getElementById("quickReplies");
+
+        let lastQuery = "";
+
+        function addMessage(text, type) {
+            const msg = document.createElement("div");
+            msg.className = `message-entrance p-4 text-sm font-light leading-relaxed max-w-[85%] ${
+                type === 'user' 
+                ? 'bg-zinc-900 border border-zinc-800 self-end text-white rounded-l-xl rounded-tr-xl' 
+                : 'bg-zinc-800/30 border border-gold/20 self-start text-zinc-300 rounded-r-xl rounded-tl-xl'
+            }`;
+            
+            if (type === 'bot') {
+                msg.innerHTML = `<span class="text-[9px] text-gold font-montserrat tracking-[2px] block mb-2 uppercase font-bold">Logistics Interface</span>${text}`;
+            } else {
+                msg.textContent = text;
+            }
+
+            messagesEl.appendChild(msg);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        function showTypingIndicator() {
+            const indicator = document.createElement("div");
+            indicator.id = "typing-indicator";
+            indicator.className = "self-start p-4 bg-zinc-800/20 border border-zinc-900 rounded-xl mb-4 typing-indicator";
+            indicator.innerHTML = "<span></span><span></span><span></span>";
+            messagesEl.appendChild(indicator);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+            return indicator;
+        }
+
+        function triggerEscalation() {
+            const subject = encodeURIComponent(`Inquiry Manifest: 15D Sky Party Liaison`);
+            const body = encodeURIComponent(`Liaison ID: ${Math.random().toString(36).substring(7).toUpperCase()}\n\nInquiry Details: ${lastQuery}\n\nPlease connect me with a Live Concierge Agent regarding this request.`);
+            window.location.href = `mailto:15thdlogistics@skyparty.name.ng?subject=${subject}&body=${body}`;
+            
+            addMessage("Hidden manifest sent to 15thdlogistics. A live agent has been notified of your inquiry history.", "bot");
+        }
+
+        function handleUserMessage(message) {
+            if (!message.trim()) return;
+            lastQuery = message;
+            addMessage(message, "user");
+
+            const indicator = showTypingIndicator();
+            
+            let bestMatch = null;
+            let highestScore = 0;
+            const inputLower = message.toLowerCase();
+
+            knowledgeBase.forEach(item => {
+                let score = 0;
+                item.keys.forEach(key => { if (inputLower.includes(key)) score++; });
+                if (score > highestScore) {
+                    highestScore = score;
+                    bestMatch = item.response;
+                }
+            });
+
+            setTimeout(() => {
+                indicator.remove();
+                if (bestMatch && highestScore > 0) {
+                    addMessage(bestMatch, "bot");
+                } else {
+                    addMessage("My logic cannot reconcile this query with current tarmac protocols. Would you like to <a href='#' onclick='triggerEscalation()' class='concierge-link'>escalate to the Live Logistics Desk</a>?", "bot");
+                }
+            }, 1000);
+        }
+
+        sendBtn.addEventListener("click", () => {
+            const message = inputEl.value.trim();
+            handleUserMessage(message);
+            inputEl.value = "";
+        });
+
+        inputEl.addEventListener("keypress", e => { if (e.key === "Enter") sendBtn.click(); });
+
+        ["The 15D Experience", "Seat Pricing", "NDA Protocols", "Speak to Live Agent"].forEach(text => {
+            const btn = document.createElement("button");
+            btn.className = "px-4 py-2 border border-zinc-800 text-[10px] uppercase tracking-widest text-zinc-400 hover:border-gold hover:text-gold transition-all duration-300 font-montserrat bg-black/40";
+            btn.textContent = text;
+            btn.onclick = () => handleUserMessage(text);
+            quickRepliesEl.appendChild(btn);
+        });
+
+        setTimeout(() => {
+            addMessage("Protocol initialized. Secure liaison established. How shall we facilitate your 15D experience?", "bot");
+        }, 800);
+    </script>
+</body>
+</html>
