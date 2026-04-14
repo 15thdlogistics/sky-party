@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Party™ | The Four Movements</title>
+    
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;600&family=Lexend:wght@300;400;700&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif']
+                    },
+                    keyframes: {
+                        shimmer:{'0%,100%':{backgroundPosition:'0% 50%'},'50%':{backgroundPosition:'100% 50%'}},
+                        fadeIn: { '0%': { opacity: '0', transform: 'translateY(20px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } }
+                    },
+                    animation:{
+                        shimmer:'shimmer 3s ease-in-out infinite',
+                        fadeIn: 'fadeIn 1.2s ease-out forwards'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body { 
+            background-color: #050505; 
+            color: #fff; 
+            -webkit-font-smoothing: antialiased; 
+            overflow-x: hidden;
+        }
+        .canter-title { font-family: 'Canter Bold', sans-serif; letter-spacing: 4px; }
+        
+        .shimmer-btn {
+            background: linear-gradient(90deg, #b08724 0%, #dfce6b 50%, #b08724 100%);
+            background-size: 200% 100%;
+            animation: shimmer 3s ease-in-out infinite;
+            transition: all 0.4s ease;
+            letter-spacing: 3px;
+            border-radius: 2px;
+        }
+        .shimmer-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 30px rgba(176, 135, 36, 0.3); }
+
+        .movement-card {
+            background: rgba(15, 15, 15, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(176, 135, 36, 0.1);
+            transition: border 0.5s ease;
+        }
+        .movement-card:hover { border-color: rgba(176, 135, 36, 0.4); }
+
+        .tour-frame { border: 1px solid #1a1a1a; overflow: hidden; }
+        .tour-container { position: relative; width: 100%; height: 0; padding-bottom: 56.25%; }
+        .tour-iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; filter: contrast(1.1) brightness(0.8); }
+    </style>
+</head>
+<body class="font-lexend">
+
+<div class="min-h-screen flex flex-col items-center">
+
+    <header class="p-8 flex justify-between items-center w-full max-w-6xl z-10">
+        <div class="canter-title text-3xl md:text-5xl text-[#b08724]">SKY PARTY™</div>
+        <nav class="hidden md:flex space-x-12 text-[10px] tracking-[0.4em] uppercase font-montserrat text-gray-400">
+            <a href="/about-us" class="hover:text-white transition">The Legacy</a>
+            <a href="/invite" class="hover:text-white transition">The Circuit</a>
+            <a href="/contact" class="hover:text-white transition">Liaison</a>
+        </nav>
+        <a href="/invite" class="shimmer-btn px-8 py-3 text-black text-[9px] font-bold md:flex hidden">
+            REQUEST ALLOCATION
+        </a>
+    </header>
+
+    <main class="w-full max-w-5xl mx-auto py-12 md:py-24 px-6 space-y-24">
+
+        <section class="text-center animate-fadeIn">
+            <p class="text-[10px] md:text-xs text-[#b08724] font-montserrat tracking-[0.5em] mb-6 uppercase">
+                A Symphony of High-Altitude Synergy
+            </p>
+            <h1 class="canter-title text-5xl md:text-8xl leading-[0.9] mb-10">
+                THE FOUR <br> <span class="italic font-light lowercase text-white" style="font-family: 'Montserrat'">movements</span>
+            </h1>
+            <p class="text-gray-400 text-sm md:text-lg max-w-2xl mx-auto mb-16 font-light leading-relaxed">
+                One flight circuit. Two premier capitals. A curated social narrative designed for the absolute few.
+            </p>
+
+            <div class="movement-card p-2 tour-frame">
+                <div class="tour-container">
+                    <iframe 
+                        class="tour-iframe"
+                        src="https://tours.360virtualtours.co.uk/legacy-aircraft-tour/"
+                        allowfullscreen
+                        title="Cabin Survey">
+                    </iframe>
+                </div>
+                <div class="py-4 bg-black">
+                    <p class="text-[10px] tracking-[0.4em] text-zinc-600 uppercase font-montserrat">
+                        Operational Stage: Embraer Legacy 600 Interior
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section class="movement-card p-12 md:p-20 text-center">
+            <h2 class="canter-title text-3xl md:text-5xl text-[#b08724] mb-6 uppercase">Movement I – The Ascent</h2>
+            <div class="w-10 h-[1px] bg-[#b08724] mx-auto mb-8"></div>
+            <p class="text-gray-300 text-lg md:text-xl font-light leading-relaxed">
+                Boarding in Lagos. Crystalline service commences the moment of lift.  
+                A managed acoustic environment. Nine hand-picked principals.  
+                <span class="text-white">The horizon shifts—the circuit begins.</span>
+            </p>
+        </section>
+
+        <section class="movement-card p-12 md:p-20 text-center">
+            <h2 class="canter-title text-3xl md:text-5xl text-[#b08724] mb-6 uppercase">Movement II – The Abuja Salon</h2>
+            <div class="w-10 h-[1px] bg-[#b08724] mx-auto mb-8"></div>
+            <p class="text-gray-300 text-lg md:text-xl font-light leading-relaxed">
+                A refined touchdown. Private tarmac engagement.  
+                A curated culinary transition featuring artisanal pairings and live orchestration.  
+                The engines remain primed for the return sequence.
+            </p>
+        </section>
+
+        <section class="movement-card p-12 md:p-20 text-center">
+            <h2 class="canter-title text-3xl md:text-5xl text-[#b08724] mb-6 uppercase">Movement III – The Zenith</h2>
+            <div class="w-10 h-[1px] bg-[#b08724] mx-auto mb-8"></div>
+            <p class="text-gray-300 text-lg md:text-xl font-light leading-relaxed">
+                Midnight over the clouds. Digestifs and final synergies.  
+                <span class="text-white">You descend into Lagos not as a guest, but as a legend of the circuit.</span>
+            </p>
+        </section>
+
+        <section class="bg-gradient-to-b from-[#1a1405] to-black p-12 md:p-20 text-center border border-[#b08724]/20 shadow-2xl">
+            <p class="text-[10px] tracking-[0.4em] text-[#b08724] uppercase mb-4">Privileged Addendum</p>
+            <h2 class="canter-title text-4xl md:text-6xl text-[#dfce6b] mb-8 uppercase leading-none">
+                Movement IV – The Residency
+            </h2>
+            <p class="text-gray-200 text-lg md:text-xl mb-10 font-light leading-relaxed">
+                A two-night sanctuary in a Victoria Island private residence.  
+                Bespoke concierge. Private culinary staff. Absolute quiet.
+            </p>
+            <p class="text-[11px] text-[#b08724] tracking-[0.2em] uppercase font-montserrat">
+                Limited to the Nine Initial Principals
+            </p>
+        </section>
+
+        <section class="text-center py-12">
+            <h2 class="canter-title text-4xl md:text-7xl mb-12 uppercase leading-tight">
+                This is not a journey. <br>
+                <span class="italic lowercase text-[#dfce6b]" style="font-family: 'Montserrat'">It is your</span> legacy.
+            </h2>
+            <a href="https://www.skyparty.name.ng/invite" class="shimmer-btn inline-block px-16 py-6 text-black font-bold text-xs uppercase">
+                Secure My Allocation
+            </a>
+        </section>
+
+    </main>
+
+    <footer class="bg-black py-16 text-center text-zinc-700 text-[10px] tracking-[0.3em] w-full border-t border-zinc-900">
+        <div class="max-w-4xl mx-auto px-6">
+            <p class="mb-4 uppercase text-zinc-500">Operational Protocol</p>
+            <p class="leading-loose mb-8">
+                Sky Party™ operates as an event curation atelier. Private aviation logistics are facilitated through third-party NCAA-licensed operators exclusively. In accordance with private circuit standards, flight fees are settled directly with the designated air carrier.
+            </p>
+            <p>© 2026 THE PRIVATE REGISTRY | SKY PARTY LTD (RC 8997727)</p>
+        </div>
+    </footer>
+
+</div>
+
+</body>
+</html>
