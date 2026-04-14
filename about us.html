@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Genesis | Sky Party™ Social Currency of the Sky</title>
+    <!-- Brand Fonts -->
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: '#D4AF37',
+                    }
+                },
+            },
+        }
+    </script>
+
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --dark-bg: #000000;
+            --card-bg: #0a0a0a;
+            --border: #1a1a1a;
+        }
+
+        body { 
+            background-color: var(--dark-bg); 
+            font-family: 'Lexend', sans-serif; 
+            color: #ffffff; 
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .header-font {
+            font-family: 'Canter Bold', sans-serif;
+            text-transform: uppercase;
+            font-weight: normal; 
+        }
+
+        /* Shimmer Effect */
+        .shimmer {
+            background: linear-gradient(to right, var(--gold) 0%, #ffffff 20%, var(--gold) 40%, var(--gold) 100%);
+            background-size: 200% auto;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shine 3s linear infinite;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        .luxury-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .luxury-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-5px);
+        }
+
+        .nav-link {
+            font-size: 11px;
+            letter-spacing: 2px;
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover { color: var(--gold); }
+
+        .section-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        /* Video Frame Styling */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .pulse-border {
+            border: 1px solid var(--gold);
+            animation: pulse-glow 2s infinite;
+        }
+
+        @keyframes pulse-glow {
+            0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(212, 175, 55, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); }
+        }
+    </style>
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Navigation -->
+    <header class="p-6 md:p-8 flex justify-between items-center z-50 sticky top-0 bg-black/90 backdrop-blur-md border-b border-zinc-900">
+        <div class="header-font text-3xl md:text-4xl tracking-widest shimmer">
+            SKY PARTY
+        </div>
+        <nav class="hidden md:flex space-x-10">
+            <a href="https://www.skyparty.name.ng/about-us?authuser=0" class="nav-link text-gold font-bold">LEGACY</a>
+            <a href="https://www.skyparty.name.ng/experience?authuser=0" class="nav-link text-white">THE PROTOCOL</a>
+            <a href="https://www.skyparty.name.ng/contact?authuser=0" class="nav-link text-white">CONTACT</a>
+        </nav>
+        <a href="https://www.skyparty.name.ng/invite?authuser=0" class="px-6 py-2 border border-gold text-gold rounded-none text-xs font-montserrat font-bold hover:bg-gold hover:text-black transition duration-500 tracking-widest">
+            RESERVE ALLOCATION
+        </a>
+    </header>
+
+    <main class="w-full max-w-6xl mx-auto px-6 py-12 md:py-24 space-y-32">
+
+        <!-- Hero Section -->
+        <section class="text-center">
+            <span class="section-label">A 15D GROUP VENTURE</span>
+            <h1 class="header-font text-5xl md:text-8xl leading-none mb-8">
+                Private Skies.<br><span class="shimmer">Elevated Minds.</span>
+            </h1>
+            <p class="text-lg md:text-2xl text-zinc-400 font-lexend font-extralight max-w-3xl mx-auto leading-relaxed">
+                Sky Party™ is a transcendent experience curated for the discerning few. Born from a vision to merge luxury aviation with curated human connection.
+            </p>
+        </section>
+
+        <!-- The Legend Section -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <span class="section-label">ORIGIN STORY</span>
+                <h2 class="header-font text-4xl md:text-6xl shimmer">The Legend in Motion</h2>
+                <p class="text-zinc-300 text-lg leading-relaxed font-light">
+                    Sky Party™ was engineered, not simply launched. Our narrative began inside <a href="https://youtu.be/iZ97NB7xN2I?si=FNUwCwVH0qI0qTlV" class="text-gold underline hover:text-white">Heist in Lagos</a>, an afrofuturistic psychological thriller that blurred fiction and reality.
+                </p>
+                <div class="p-6 border-l-2 border-gold bg-zinc-900/50 italic text-zinc-400 text-sm">
+                    The storyline took an unexpected leap from street to sky: the very first Sky Party™ unfolded aboard a private jet, rewriting the playbook for luxury entertainment.
+                </div>
+            </div>
+            <div class="luxury-card overflow-hidden group">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/iZ97NB7xN2I?si=FNUwCwVH0qI0qTlV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Core Values -->
+        <section class="py-12">
+            <div class="text-center mb-16">
+                <span class="section-label">PHILOSOPHY</span>
+                <h2 class="header-font text-4xl md:text-6xl">Operational Pillars</h2>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="luxury-card p-8">
+                    <h3 class="header-font text-2xl text-gold mb-3">Exclusivity</h3>
+                    <p class="text-zinc-500 text-sm font-light">Only a select few traverse our runway.</p>
+                </div>
+                <div class="luxury-card p-8">
+                    <h3 class="header-font text-2xl text-gold mb-3">Curation</h3>
+                    <p class="text-zinc-500 text-sm font-light">Every detail is crafted with surgical precision.</p>
+                </div>
+                <div class="luxury-card p-8">
+                    <h3 class="header-font text-2xl text-gold mb-3">Discretion</h3>
+                    <p class="text-zinc-500 text-sm font-light">We protect your image and narrative at all times.</p>
+                </div>
+                <div class="luxury-card p-8">
+                    <h3 class="header-font text-2xl text-gold mb-3">Legacy</h3>
+                    <p class="text-zinc-500 text-sm font-light">A story worth retelling for generations.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Leadership Section -->
+        <section class="space-y-24">
+            <div class="text-center">
+                <span class="section-label">THE CONCIERGE CIRCUIT</span>
+                <h2 class="header-font text-4xl md:text-6xl">Architects of Atmosphere</h2>
+            </div>
+
+            <!-- Consultant 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <img src="https://www.dropbox.com/scl/fi/jlmw5ydyz2sg8qn4io890/IMG-20250815-WA0019.jpg?rlkey=uzd4v7fivt3fcimyijqb1c4jo&st=78l79wpj&dl=1" alt="Precious Ubadike" class="luxury-card w-full grayscale hover:grayscale-0 transition duration-700">
+                <div class="space-y-6">
+                    <h3 class="header-font text-3xl text-gold">Chief Consultant</h3>
+                    <p class="text-2xl font-bold tracking-tight">Precious Ubadike</p>
+                    <p class="text-zinc-400 font-light leading-relaxed">
+                        Known as "Caesar Wakanda," Precious is an alumnus of the Google Hustle Academy, ATO Certified Flight dispatcher, and brand architect. His expertise bridges high-impact business strategy with intuitive luxury design.
+                    </p>
+                    <a href="https://www.linkedin.com/in/precious-ubadike-20387523a/" class="section-label text-[10px] hover:text-white transition-colors">LinkedIn Dossier →</a>
+                </div>
+            </div>
+
+            <!-- Aviation Expert -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                <div class="space-y-6 order-2 lg:order-1 text-right">
+                    <h3 class="header-font text-3xl text-gold">Aviation Ops</h3>
+                    <p class="text-2xl font-bold tracking-tight text-white">Amaechi Ubadike</p>
+                    <p class="text-zinc-400 font-light leading-relaxed">
+                        A consummate professional with CPL, PPL, and ATC licenses. Formerly with the NCAA, Amaechi ensures regulatory precision and operational excellence for every flight.
+                    </p>
+                </div>
+                <img src="https://uploads.onecompiler.io/43z22g7dk/442u87zes/1697710781500.jpeg" alt="Amaechi Ubadike" class="luxury-card w-full order-1 lg:order-2 grayscale hover:grayscale-0 transition duration-700">
+            </div>
+
+            <!-- Core Team List -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="luxury-card p-10">
+                    <p class="section-label">Cultural Pulse</p>
+                    <h4 class="header-font text-2xl mb-4">Klaus Kelco</h4>
+                    <p class="text-zinc-500 text-sm">The name and face people know on the streets, turning every appearance into a chapter of the story.</p>
+                </div>
+                <div class="luxury-card p-10">
+                    <p class="section-label">Strategic Counsel</p>
+                    <h4 class="header-font text-2xl mb-4">Peter “Tyler” Daniels</h4>
+                    <img src="https://uploads.onecompiler.io/43z22g7dk/442u87zes/1664778553013.jpeg" alt="Peter Tyler Daniels" class="w-full mb-4 grayscale hover:grayscale-0 transition duration-700">
+                    <p class="text-zinc-500 text-sm">A visionary psychologist who brings an opulent mastery of human behavior to our digital orchestrations.</p>
+                </div>
+                <div class="luxury-card p-10">
+                    <p class="section-label">Sky Experience</p>
+                    <h4 class="header-font text-2xl mb-4">Abubakar "Epiq" Imam</h4>
+                    <img src="https://uploads.onecompiler.io/43z22g7dk/44a3d57ga/1000220050.jpg" alt="Abubakar Epiq Imam" class="w-full mb-4 grayscale hover:grayscale-0 transition duration-700">
+                    <p class="text-zinc-500 text-sm">Creative Director and Sky Experience Manager, he brings experiential value and creative spark to all our sky events.</p>
+                </div>
+                <div class="luxury-card p-10">
+                    <p class="section-label">Flight Ops</p>
+                    <h4 class="header-font text-2xl mb-4">Chinedu Ohiagu</h4>
+                    <p class="text-zinc-500 text-sm">Globally-minded manager ensuring a seamless experience from tarmac to touchdown.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery / Visual Impact -->
+        <section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <img src="https://www.dropbox.com/scl/fi/2asw4fe9vpzyo6prroish/Skyparty-1.png?rlkey=fapst8be6numiccfkw0ksy2fx&st=b3jvfil4&dl=1" alt="Sky Party Ops" class="luxury-card w-full h-64 object-cover">
+            <img src="https://www.dropbox.com/scl/fi/5d0cw6cnj61qfoirs5nuu/unnamed-5.webp?rlkey=dndz4rc19av4u7lzrjuclijyq&st=sjegus4a&dl=1" alt="Sky Party Vibe" class="luxury-card w-full h-64 object-cover">
+            <img src="https://www.dropbox.com/scl/fi/n4829ro5kc2yhl7ywuhzg/unnamed-3.webp?rlkey=gqyipbygbt84b79bj6cvhej5k&st=mdqydcz7&dl=1" alt="Sky Party Jet" class="luxury-card w-full h-64 object-cover">
+        </section>
+
+        <!-- Location Section -->
+        <section class="space-y-8">
+            <div class="text-center">
+                <span class="section-label">THE HUB</span>
+                <h2 class="header-font text-4xl md:text-6xl shimmer">General Aviation Terminal</h2>
+            </div>
+            <div class="luxury-card p-2">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d240821.09228894208!2d3.1463645793782917!3d6.569748900968951!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b91178d4a2f45%3A0xd180503459574505!2zU2t5IFBhcnR54oSi77iPIE5pZ2VyaWE!5e0!3m2!1sen!2sng!4v1761530164083!5m2!1sen!2sng" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="luxury-card p-12 text-center space-y-12">
+            <span class="section-label">ESTABLISH CONNECTION</span>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+                <div class="space-y-4">
+                    <p class="header-font text-gold text-xl">Operational Base</p>
+                    <p class="text-zinc-400 text-sm uppercase tracking-widest leading-loose">
+                        General Aviation Terminal (GAT), <br>
+                        Murtala Muhammed Airport, Lagos.
+                    </p>
+                </div>
+                <div class="space-y-4">
+                    <p class="header-font text-gold text-xl">Digital Concierge</p>
+                    <div class="space-y-2 text-zinc-300 font-light underline">
+                        <a href="mailto:support@app.skyparty.name.ng" class="block">support@app.skyparty.name.ng</a>
+                        <a href="tel:+2349166721703" class="block">+234 916 672 1703</a>
+                        <a href="https://www.instagram.com/skypartynigeria" class="block">@SkyParty™️Nigeria</a>
+                    </div>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-zinc-900">
+                 <a href="https://www.skyparty.name.ng/home/payment?authuser=0" class="header-font text-2xl shimmer tracking-widest hover:text-white transition-all">RESERVE SEAT →</a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-black py-16 border-t border-zinc-900 text-center">
+        <div class="header-font text-2xl tracking-widest text-zinc-800 mb-4">SKY PARTY™ (RC:8997727)</div>
+        <p class="text-zinc-600 text-[10px] tracking-[4px] uppercase font-montserrat">
+            © 2026 Sky Party. A Private Allocation Circuit.
+        </p>
+    </footer>
+
+</body>
+</html>
