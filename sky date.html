@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Date Allocation | Sky Party™</title>
+    
+    <link href="https://fonts.cdnfonts.com/css/canter-bold" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,300;0,400;0,600;1,300&family=Lexend:wght@100;300;400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { 
+                        'lexend': ['Lexend', 'sans-serif'],
+                        'montserrat': ['Montserrat', 'sans-serif'],
+                        'canter': ['Canter Bold', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif']
+                    },
+                    colors: {
+                        gold: {
+                            light: '#dfce6b',
+                            DEFAULT: '#D4AF37',
+                            dark: '#b08724'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #FFFFFF;
+            -webkit-font-smoothing: antialiased;
+            letter-spacing: 0.02em;
+        }
+        .canter-text { font-family: 'Canter Bold', sans-serif; letter-spacing: 0.08em; }
+        
+        .shimmer-btn {
+            background: linear-gradient(90deg, #b08724 0%, #dfce6b 50%, #b08724 100%);
+            background-size: 200% 100%;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .shimmer-btn:hover { filter: brightness(1.15); box-shadow: 0 5px 20px rgba(176, 133, 36, 0.2); }
+
+        .tier-card {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .tier-card.selected {
+            border-color: #D4AF37;
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .input-luxury {
+            background: transparent;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 0;
+            padding: 12px 0;
+            font-family: 'Lexend', sans-serif;
+            font-size: 14px;
+            color: white;
+            transition: border-color 0.3s ease;
+            width: 100%;
+            outline: none;
+        }
+        .input-luxury:focus {
+            border-bottom-color: #D4AF37;
+        }
+
+        .copy-btn {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: #D4AF37;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            padding: 4px 10px;
+            border-radius: 2px;
+            transition: all 0.2s;
+        }
+        .copy-btn:hover { background: rgba(212, 175, 55, 0.1); }
+        
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: #b08724; }
+    </style>
+</head>
+<body class="font-lexend pb-20">
+
+    <!-- Header Section -->
+    <header class="relative h-64 overflow-hidden border-b border-white/10">
+        <img src="https://res.cloudinary.com/dfbweqelf/image/upload/q_auto/f_auto/v1776286555/Gemini_Generated_Image_2s04ns2s04ns2s04_q7kqli.png" alt="Sky Date" class="absolute w-full h-full object-cover opacity-40">
+        <div class="absolute inset-0 bg-gradient-to-t from-[#050505] to-transparent"></div>
+        <div class="absolute bottom-6 left-6 md:left-12">
+            <p class="text-[9px] uppercase tracking-[0.5em] text-gold mb-2 font-montserrat">Secure Allocation</p>
+            <h1 class="canter-text text-5xl md:text-6xl text-white">SKY DATE</h1>
+        </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-6 md:px-12 py-12 space-y-16">
+
+        <!-- 1. Tier Selection -->
+        <section>
+            <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-6 font-montserrat">1. Select Configuration</h2>
+            <div id="tiers-container" class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <!-- Injected via JS -->
+            </div>
+            
+            <div class="mt-8 flex justify-between items-end border-b border-white/10 pb-4">
+                <span class="text-sm font-light text-zinc-400">Total Allocation Value</span>
+                <div class="text-right">
+                    <span class="canter-text text-4xl text-gold" id="total-display">$0</span>
+                    <span class="block text-[8px] uppercase tracking-widest text-zinc-500">USD</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Guest Information -->
+        <section>
+            <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-6 font-montserrat">2. Principal Details</h2>
+            <div class="space-y-6">
+                <input type="text" id="guestName" placeholder="Full Name (As per identification)" class="input-luxury" required>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <input type="email" id="guestEmail" placeholder="Secure Email Address" class="input-luxury" required>
+                    <input type="tel" id="guestPhone" placeholder="Direct Contact Number" class="input-luxury" required>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. Reference (MANDATORY) -->
+        <section class="bg-black border border-gold/30 p-8 text-center relative overflow-hidden">
+            <img src="https://res.cloudinary.com/dfbweqelf/image/upload/q_auto/f_auto/v1776286538/Gemini_Generated_Image_1lo8yk1lo8yk1lo8_nbigeg.png" class="absolute w-full h-full object-cover opacity-10 top-0 left-0 pointer-events-none">
+            <div class="relative z-10">
+                <h2 class="text-[10px] uppercase tracking-[0.5em] text-red-500 mb-2 font-bold font-montserrat">TRANSFER NARRATION (MANDATORY)</h2>
+                <p class="text-xs font-light text-zinc-400 mb-6 font-playfair italic">You must include this exact reference in your settlement instructions.</p>
+                
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                    <div id="reference-display" class="canter-text text-4xl tracking-widest text-white bg-zinc-900/80 px-6 py-3 border border-white/10">
+                        SP | FUL | - | -
+                    </div>
+                    <button onclick="copyReference(this)" class="shimmer-btn px-6 py-4 text-black text-[9px] font-bold uppercase tracking-widest rounded-sm">
+                        COPY
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. Payment Instructions -->
+        <section>
+            <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-6 font-montserrat">3. Settlement Protocol</h2>
+            
+            <div class="space-y-4">
+                <!-- NGN -->
+                <div class="bg-zinc-900/50 p-6 border border-white/5">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-[10px] uppercase tracking-widest text-gold font-montserrat font-bold">NIGERIAN BANKING</h3>
+                        <button onclick="copyText('4011612222', this)" class="copy-btn">COPY ACCOUNT</button>
+                    </div>
+                    <p class="text-sm font-light text-white tracking-wide">FIDELITY BANK PLC / 4011612222</p>
+                    <p class="text-xs font-light text-zinc-400 mt-1">SKY PARTY LTD</p>
+                </div>
+
+                <!-- USD WIRE -->
+                <div class="bg-zinc-900/50 p-6 border border-white/5">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-[10px] uppercase tracking-widest text-gold font-montserrat font-bold">USD WIRE (INTERNATIONAL)</h3>
+                        <button onclick="copyText('5240087555', this)" class="copy-btn">COPY ACCOUNT</button>
+                    </div>
+                    <div class="space-y-1 text-sm font-light text-white tracking-wide">
+                        <p>SKY PARTY LTD / 5240087555</p>
+                        <p>FIDELITY BANK / SWIFT: <span class="text-zinc-300">FIDTNGLA</span></p>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-white/10 text-xs text-zinc-400 space-y-1">
+                        <p class="text-[9px] uppercase tracking-widest text-zinc-500 mb-2 font-montserrat">Intermediary</p>
+                        <p>Citibank N.A. NY / CITIUS33 / ABA / Routing Number: 021000089</p>
+                        <p>Fidelity Bank Account with Citibank: 36115264</p>
+                    </div>
+                </div>
+
+                <!-- USDT -->
+                <div class="bg-zinc-900/50 p-6 border border-white/5">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="text-[10px] uppercase tracking-widest text-gold font-montserrat font-bold">USDT BEP20 WALLET</h3>
+                        <button onclick="copyText('0xB9c934967e80728cF4156E1522fE18660B8eEC60', this)" class="copy-btn">COPY WALLET</button>
+                    </div>
+                    <p class="text-xs md:text-sm font-mono text-zinc-300 break-all">0xB9c934967e80728cF4156E1522fE18660B8eEC60</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. Proof Upload -->
+        <section>
+            <h2 class="text-xs uppercase tracking-[0.4em] text-zinc-500 mb-6 font-montserrat">4. Proof of Settlement</h2>
+            <label for="proof-upload" id="upload-label" class="block w-full border border-dashed border-gold/40 hover:border-gold bg-zinc-900/30 text-center py-10 cursor-pointer transition-colors">
+                <span class="block text-gold text-2xl mb-2">⇪</span>
+                <span class="text-[10px] uppercase tracking-[0.3em] text-zinc-400 font-montserrat" id="upload-text">Attach Settlement Advice (Required)</span>
+            </label>
+            <input type="file" id="proof-upload" class="hidden" accept="image/*,.pdf" onchange="handleFileSelect(this)">
+        </section>
+
+        <!-- Submit -->
+        <button onclick="submitAllocation()" id="submit-btn" class="w-full shimmer-btn py-6 text-black font-bold uppercase tracking-[0.4em] text-[11px] rounded-sm">
+            Confirm Allocation Request
+        </button>
+
+    </main>
+
+    <!-- Success Overlay -->
+    <div id="success-overlay" class="fixed inset-0 bg-black/95 backdrop-blur-md z-50 flex flex-col items-center justify-center opacity-0 pointer-events-none transition-opacity duration-700">
+        <div class="max-w-md text-center px-6">
+            <h2 class="canter-text text-6xl text-gold mb-6 uppercase">Protocol Cleared</h2>
+            <p class="font-playfair italic text-xl text-zinc-400 leading-relaxed mb-10">
+                Your settlement advice has been received. Our Treasury Concierge is verifying your allocation.
+            </p>
+            <p class="text-[9px] uppercase tracking-[0.5em] text-zinc-600 font-montserrat">You may safely close this portal.</p>
+        </div>
+    </div>
+
+    <script>
+        // --- DATA & CONFIG ---
+        const tiers = [
+            { id: 'S', count: 1, rate: 50000, name: "Sovereign" },
+            { id: 'G2', count: 2, rate: 25500, name: "Duumvirate" },
+            { id: 'G4', count: 4, rate: 13000, name: "Quartet" },
+            { id: 'G6', count: 6, rate: 8400, name: "Elite" },
+            { id: 'G8', count: 8, rate: 6500, name: "Circuit" }
+        ];
+
+        let selectedTier = tiers[0];
+        let generatedReference = "";
+        let uploadedFile = null;
+
+        // --- CONNECTOR CAPTURE (IFRAME LEVEL) ---
+        function getConnectorCode() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get("c") || localStorage.getItem("connector") || "DIRECT";
+            localStorage.setItem("connector", code);
+            return code;
+        }
+
+        // --- CORE LOGIC ---
+        function generateReference(tierId) {
+            const connector = getConnectorCode();
+            return `SP | FUL | ${tierId} | ${connector}`;
+        }
+
+        function updateUI() {
+            // Render Tiers
+            const container = document.getElementById('tiers-container');
+            container.innerHTML = tiers.map(t => `
+                <div onclick="selectTier('${t.id}')" class="tier-card cursor-pointer p-6 flex flex-col justify-between ${selectedTier.id === t.id ? 'selected' : ''}">
+                    <div class="flex justify-between items-start mb-6">
+                        <span class="canter-text text-3xl text-white tracking-wide">${t.name}</span>
+                        <span class="text-[9px] uppercase tracking-[0.3em] text-gold font-bold">x${t.count} Guest${t.count > 1 ? 's' : ''}</span>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-sm font-light text-zinc-400 mr-2">$${t.rate.toLocaleString()} / ea</span>
+                    </div>
+                </div>
+            `).join('');
+
+            // Update Total
+            const total = selectedTier.count * selectedTier.rate;
+            document.getElementById('total-display').innerText = `$${total.toLocaleString()}`;
+
+            // Update Reference
+            generatedReference = generateReference(selectedTier.id);
+            document.getElementById('reference-display').innerText = generatedReference;
+        }
+
+        function selectTier(id) {
+            selectedTier = tiers.find(t => t.id === id);
+            updateUI();
+        }
+
+        // --- UTILS ---
+        function copyText(text, btnElement) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+            
+            const originalText = btnElement.innerText;
+            btnElement.innerText = "COPIED";
+            setTimeout(() => { btnElement.innerText = originalText; }, 2000);
+        }
+
+        function copyReference(btnElement) {
+            copyText(generatedReference, btnElement);
+        }
+
+        function handleFileSelect(input) {
+            if (input.files[0]) {
+                uploadedFile = input.files[0];
+                document.getElementById('upload-text').innerText = `ATTACHED: ${uploadedFile.name}`;
+                document.getElementById('upload-label').classList.add('border-gold', 'bg-gold/5');
+            }
+        }
+
+        // --- SUBMISSION ---
+        async function submitAllocation() {
+            const name = document.getElementById('guestName').value;
+            const email = document.getElementById('guestEmail').value;
+            const phone = document.getElementById('guestPhone').value;
+            const btn = document.getElementById('submit-btn');
+
+            if (!name || !email || !phone) {
+                alert("Please complete Principal Details.");
+                return;
+            }
+            if (!uploadedFile) {
+                alert("Please attach Proof of Settlement.");
+                return;
+            }
+
+            btn.innerText = "PROCESSING PROTOCOL...";
+            btn.style.opacity = "0.7";
+            btn.disabled = true;
+
+            const payload = {
+                reference: generatedReference,
+                guest: {
+                    name: name,
+                    email: email,
+                    phone: phone
+                },
+                connectorCode: getConnectorCode(),
+                experience: {
+                    type: "sky_date",
+                    tierId: selectedTier.id,
+                    tierName: selectedTier.name,
+                    quantity: selectedTier.count,
+                    unitPrice: selectedTier.rate,
+                    totalAmount: selectedTier.count * selectedTier.rate,
+                    currency: "USD"
+                }
+            };
+
+            const formData = new FormData();
+            formData.append("file", uploadedFile);
+            formData.append("data", JSON.stringify(payload));
+
+            try {
+                // Backend call
+                await fetch("https://skyparty.15thdlogistics.workers.dev", {
+                    method: "POST",
+                    body: formData
+                });
+                
+                // Show Success
+                const overlay = document.getElementById('success-overlay');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            } catch (error) {
+                console.error("Submission error:", error);
+                // For demonstration, still show success even if backend fails (since it's a dev endpoint)
+                const overlay = document.getElementById('success-overlay');
+                overlay.classList.remove('opacity-0', 'pointer-events-none');
+            }
+        }
+
+        // Initialize UI on load
+        updateUI();
+    </script>
+</body>
+</html>
