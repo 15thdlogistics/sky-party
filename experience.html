@@ -85,7 +85,7 @@
             height: 100%;
             object-fit: cover;
             transform: scale(1.15); 
-            opacity: 0.7; /* Increased for mobile visibility */
+            opacity: 0.7; 
             transition: all 0.8s ease;
             filter: grayscale(20%);
         }
@@ -105,12 +105,6 @@
             transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
             pointer-events: none;
         }
-        .experience-card.is-visible .secret-blur-overlay,
-        .experience-card:active .secret-blur-overlay,
-        .experience-card:hover .secret-blur-overlay {
-            /* We still want it blurred until active interaction on mobile or hover on desktop */
-        }
-        
         .experience-card:hover .secret-blur-overlay {
              backdrop-filter: blur(0px);
              background: rgba(0,0,0,0);
@@ -189,6 +183,15 @@
         </div>
     </div>
 
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-black/95 backdrop-blur-xl z-50 flex flex-col items-center justify-center space-y-10 text-[12px] uppercase tracking-[0.4em] font-montserrat text-zinc-400 opacity-0 pointer-events-none transition-all duration-500">
+        <a href="how this works.html" class="hover:text-gold transition-colors">The Ascent</a>
+        <a href="#" class="text-gold">Experiences</a>
+        <a href="https://wa.me/+2349167621703" class="hover:text-gold transition-colors">Concierge</a>
+        <a href="connector.html" class="hover:text-gold transition-colors">Elite Connectors</a>
+        <button onclick="toggleMenu()" class="mt-10 text-zinc-600 text-xs hover:text-white transition-colors">Close ✕</button>
+    </div>
+
     <!-- Header -->
     <header class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-xl border-b border-white/5">
         <div class="max-w-7xl mx-auto px-6 md:px-10 py-4 md:py-5 flex justify-between items-center">
@@ -197,11 +200,15 @@
                 <a href="how this works.html" class="hover:text-gold transition-all duration-500">The Ascent</a>
                 <a href="#" class="text-gold">Experiences</a>
                 <a href="https://wa.me/+2349167621703" class="hover:text-gold transition-all duration-500">Concierge</a>
-                <a href="connector.html" class="hover:text-gold transition-all duration-500">Elite Connectors</a>
             </nav>
-            <button onclick="openPortal()" class="shimmer-btn px-5 md:px-8 py-2 md:py-3 text-black text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em]">
-                Allocation
-            </button>
+            <div class="flex items-center gap-4">
+                <button onclick="openPortal('general')" class="shimmer-btn px-5 md:px-8 py-2 md:py-3 text-black text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em]">
+                    Allocation
+                </button>
+                <button onclick="toggleMenu()" class="lg:hidden text-gold text-xl leading-none">
+                    ☰
+                </button>
+            </div>
         </div>
     </header>
 
@@ -223,7 +230,7 @@
                     <a href="#grid" class="shimmer-btn px-8 py-3 text-black font-bold uppercase tracking-widest text-[8px] w-full md:w-auto">
                         Explore
                     </a>
-                    <button onclick="openPortal()" class="border border-gold/30 px-8 py-3 text-gold font-bold uppercase tracking-widest text-[8px] hover:bg-gold/10 transition-all w-full md:w-auto">
+                    <button onclick="openPortal('general')" class="border border-gold/30 px-8 py-3 text-gold font-bold uppercase tracking-widest text-[8px] hover:bg-gold/10 transition-all w-full md:w-auto">
                         Request Allocation
                     </button>
                 </div>
@@ -254,7 +261,7 @@
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
             
             <!-- Experience 1: Customized -->
-            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal()">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal('custom')">
                 <div class="video-wrapper aspect-video">
                     <video muted loop playsinline poster="https://res.cloudinary.com/dw9m06rgf/image/upload/v1773121881/Sky_Party_20250623_133948_0000_porkzk.png">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174946/Generating_Premium_Nightlife_Video_fl4sov.mp4" type="video/mp4">
@@ -270,7 +277,7 @@
             </div>
 
             <!-- Experience 2: Sky Dates -->
-            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal()">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal('date')">
                 <div class="video-wrapper aspect-video">
                     <video muted loop playsinline poster="https://res.cloudinary.com/dw9m06rgf/image/upload/v1773121881/Sky_Party_20250623_133948_0000_porkzk.png">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174933/Luxury_Sky_Date_Video_Generation_y3g5x3.mp4" type="video/mp4">
@@ -286,7 +293,7 @@
             </div>
 
             <!-- Experience 3: Sky Owambe -->
-            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal()">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal('owambe')">
                 <div class="video-wrapper aspect-video">
                     <video muted loop playsinline poster="https://res.cloudinary.com/dw9m06rgf/image/upload/v1773121881/Sky_Party_20250623_133948_0000_porkzk.png">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776175011/Owambe_In_The_Sky_Video_Generation_bm2qpk.mp4" type="video/mp4">
@@ -302,7 +309,7 @@
             </div>
 
             <!-- Experience 4: Sky Secrets -->
-            <div class="experience-card group flex flex-col cursor-pointer relative" onclick="openPortal()">
+            <div class="experience-card group flex flex-col cursor-pointer relative" onclick="openPortal('secret')">
                 <div class="absolute top-6 md:top-8 left-1/2 -translate-x-1/2 z-30 pointer-events-none w-full px-4">
                     <div class="max-w-max mx-auto bg-red-950/40 border border-red-800/30 px-4 py-1.5 rounded-full flex items-center gap-2">
                         <span class="w-1.5 h-1.5 bg-red-600 rounded-full animate-pulse"></span>
@@ -404,8 +411,11 @@
                 The next story your circle won't believe begins at altitude.
             </p>
             <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-12 px-6">
-                <button onclick="openPortal()" class="shimmer-btn px-10 md:px-20 py-5 md:py-7 text-black font-bold uppercase tracking-[0.3em] text-[10px] md:text-[11px]">
-                    Activate Allocation
+                <button onclick="openPortal('general')" class="shimmer-btn px-10 md:px-20 py-5 md:py-7 text-black font-bold uppercase tracking-[0.3em] text-[10px] md:text-[11px]">
+                    Allocation
+                </button>
+                <button onclick="openPortal('general')" class="border border-white/10 px-10 md:px-20 py-5 md:py-7 text-zinc-400 font-bold uppercase tracking-[0.3em] text-[10px] md:text-[11px] hover:text-white hover:border-white transition-all duration-700">
+                    Concierge
                 </button>
             </div>
         </div>
@@ -415,11 +425,16 @@
     <footer class="py-20 bg-black border-t border-white/5 text-center text-zinc-700 relative z-20">
         <div class="max-w-6xl mx-auto px-6 md:px-10">
             <div class="canter-text text-4xl md:text-5xl text-gold-dark/40 mb-10">SKY PARTY™</div>
-            <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10 opacity-50 text-[8px] md:text-[9px] uppercase tracking-[0.4em] font-montserrat">
-                <span>Bookings</span>
-                <span>Curations</span>
-                <span>Reservation Only</span>
+            
+            <!-- 5 Core Trust Links -->
+            <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10 opacity-70 text-[8px] md:text-[9px] uppercase tracking-[0.4em] font-montserrat">
+                <a href="about.html" class="hover:text-gold transition-colors">About</a>
+                <a href="how this works.html" class="hover:text-gold transition-colors">The Ascent</a>
+                <a href="legal.html" class="hover:text-gold transition-colors">Legal</a>
+                <a href="privacy.html" class="hover:text-gold transition-colors">Privacy</a>
+                <a href="https://wa.me/+2349167621703" class="hover:text-gold transition-colors">Concierge</a>
             </div>
+
             <p class="text-[8px] md:text-[9px] leading-[2.8] max-w-4xl mx-auto mb-16 font-light uppercase tracking-[0.3em] opacity-30">
                 Sky Party™ operates as an event curation atelier. Private aviation logistics are facilitated through third-party NCAA-licensed operators exclusively. Operational confirmation occurs 10 to 15 days post-payment sequence.
             </p>
@@ -430,7 +445,62 @@
     </footer>
 
     <script>
-        // Optimized Scroll Reveal Logic
+        // --- 1. CONNECTOR ATTRIBUTION SYSTEM ---
+        function getConnectorCode() {
+            const params = new URLSearchParams(window.location.search);
+            const code = params.get("c") || localStorage.getItem("connector") || "DIRECT";
+            localStorage.setItem("connector", code);
+            return code;
+        }
+        // Initialize on load to ensure capture
+        getConnectorCode();
+
+        // --- 2. LUXURY MOBILE MENU LOGIC ---
+        function toggleMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('opacity-0');
+            menu.classList.toggle('pointer-events-none');
+        }
+
+        // --- 3. EXPERIENCE-SPECIFIC PORTAL LOGIC ---
+        function openPortal(type = 'sky-date') {
+            const slider = document.getElementById('portal-slider');
+            const overlay = document.getElementById('slider-overlay');
+            const frame = document.getElementById('portal-frame');
+            
+            const connector = getConnectorCode();
+            
+            const routes = {
+                "sky-date": "checkout_sky_date.html", // Replaced external domain with local file for preview capability, standard is "https://checkout.sky-party.pages.dev/sky-date"
+                "date": "checkout_sky_date.html",
+                "owambe": "https://checkout.sky-party.pages.dev/owambe",
+                "custom": "https://checkout.sky-party.pages.dev/custom",
+                "secret": "https://checkout.sky-party.pages.dev/secret",
+                "general": "checkout_sky_date.html"
+            };
+
+            frame.src = `${routes[type] || routes["general"]}?c=${connector}`;
+
+            slider.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closePortal() {
+            const slider = document.getElementById('portal-slider');
+            const overlay = document.getElementById('slider-overlay');
+            const frame = document.getElementById('portal-frame');
+            
+            slider.classList.remove('active');
+            overlay.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            setTimeout(() => {
+                frame.src = "";
+            }, 600);
+        }
+
+        // --- 4. OPTIMIZED SCROLL REVEAL LOGIC ---
         const handleScroll = () => {
             const scrollY = window.scrollY;
             
@@ -468,7 +538,7 @@
 
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        // VIDEO AUTO-PLAY OBSERVER (MOBILE FIX)
+        // --- 5. VIDEO AUTO-PLAY OBSERVER (MOBILE FIX) ---
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const video = entry.target.querySelector('video');
@@ -476,7 +546,6 @@
 
                 if (entry.isIntersecting) {
                     video.play().catch(err => {
-                        // Browser blocked autoplay, but muted helps prevent this
                         console.log("Autoplay blocked:", err);
                     });
                     entry.target.classList.add('is-visible');
@@ -486,39 +555,13 @@
                 }
             });
         }, {
-            threshold: 0.2 // Start playing when 20% visible
+            threshold: 0.2
         });
 
-        // Initialize observers for all cards
         document.addEventListener('DOMContentLoaded', () => {
             const cards = document.querySelectorAll('.experience-card');
             cards.forEach(card => videoObserver.observe(card));
         });
-
-        function openPortal() {
-            const slider = document.getElementById('portal-slider');
-            const overlay = document.getElementById('slider-overlay');
-            const frame = document.getElementById('portal-frame');
-            
-            frame.src = "https://skyexperience.oneapp.dev";
-            slider.classList.add('active');
-            overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closePortal() {
-            const slider = document.getElementById('portal-slider');
-            const overlay = document.getElementById('slider-overlay');
-            const frame = document.getElementById('portal-frame');
-            
-            slider.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = 'auto';
-            
-            setTimeout(() => {
-                frame.src = "";
-            }, 600);
-        }
     </script>
 
 </body>
