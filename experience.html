@@ -95,7 +95,6 @@
             transform: scale(1.2); 
         }
 
-        /* Sky Secrets Specific Blur Logic */
         .secret-blur-overlay {
             position: absolute;
             inset: 0;
@@ -110,7 +109,6 @@
              background: rgba(0,0,0,0);
         }
 
-        /* Portal Overlay Styles */
         #portal-slider {
             position: fixed;
             bottom: -100%;
@@ -140,7 +138,6 @@
         }
         .slider-overlay.active { opacity: 1; pointer-events: auto; }
 
-        /* Reveal Section Logic */
         .reveal-container {
             position: relative;
             height: 120vh; 
@@ -212,7 +209,7 @@
         </div>
     </header>
 
-    <!-- Slidable Hero Section (Optimized Size -45%) -->
+    <!-- Slidable Hero Section -->
     <section class="reveal-container" id="hero-reveal">
         <div class="sticky-reveal">
             <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-40">
@@ -259,7 +256,6 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20">
-            
             <!-- Experience 1: Customized -->
             <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal('custom')">
                 <div class="video-wrapper aspect-video">
@@ -277,7 +273,7 @@
             </div>
 
             <!-- Experience 2: Sky Dates -->
-            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal('date')">
+            <div class="experience-card group flex flex-col cursor-pointer" onclick="openPortal('sky_date')">
                 <div class="video-wrapper aspect-video">
                     <video muted loop playsinline poster="https://res.cloudinary.com/dw9m06rgf/image/upload/v1773121881/Sky_Party_20250623_133948_0000_porkzk.png">
                         <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174933/Luxury_Sky_Date_Video_Generation_y3g5x3.mp4" type="video/mp4">
@@ -334,7 +330,6 @@
                     <span class="text-[8px] md:text-[9px] tracking-[0.4em] uppercase text-zinc-800 group-hover:text-red-900 transition-all duration-500">Request Private Access →</span>
                 </div>
             </div>
-
         </div>
     </section>
 
@@ -365,76 +360,10 @@
         </div>
     </section>
 
-    <!-- Slidable Post-Protocol Reveal -->
-    <section class="reveal-container" id="post-protocol-reveal">
-        <div class="sticky-reveal">
-            <video autoplay muted loop playsinline class="absolute w-full h-full object-cover opacity-60">
-                <source src="https://res.cloudinary.com/dw9m06rgf/video/upload/v1776174946/Generating_Premium_Nightlife_Video_fl4sov.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-black/60"></div>
-            
-            <div class="reveal-content text-center px-6 md:px-10" id="post-protocol-content">
-                <h2 class="canter-text text-5xl md:text-[8rem] mb-6 uppercase leading-none">CRAFTING THE <br> <span class="gold-gradient-text">UNIMAGINABLE.</span></h2>
-                <p class="font-playfair italic text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto">
-                    A blueprint for those who demand more than the ordinary.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="luxury-section-spacing bg-black relative z-20 overflow-hidden">
-        <div class="max-w-6xl mx-auto px-6 md:px-10">
-            <p class="text-[9px] uppercase tracking-[0.6em] text-zinc-600 mb-20 text-center">Voice of the Ascent</p>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
-                <div class="border-l border-white/5 pl-8 md:pl-12">
-                    <p class="font-playfair italic text-lg md:text-xl text-zinc-300 leading-relaxed mb-10">"We planned a corporate retreat, but what we got was a shift in reality. The skyline at midnight is a different world."</p>
-                    <p class="text-[9px] uppercase tracking-widest text-gold font-bold">— Director, Sovereign Group</p>
-                </div>
-                <div class="border-l border-white/5 pl-8 md:pl-12">
-                    <p class="font-playfair italic text-lg md:text-xl text-zinc-300 leading-relaxed mb-10">"Discretion was my priority. Sky Party delivered an experience so private and refined, it felt like our own secret city."</p>
-                    <p class="text-[9px] uppercase tracking-widest text-gold font-bold">— Private Wealth Partner</p>
-                </div>
-                <div class="border-l border-white/5 pl-8 md:pl-12">
-                    <p class="font-playfair italic text-lg md:text-xl text-zinc-300 leading-relaxed mb-10">"The Sky Owambe was more than a party. It was high-culture redefined. Every detail was curated to perfection."</p>
-                    <p class="text-[9px] uppercase tracking-widest text-gold font-bold">— Creative Lead, Ethos</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Final CTA -->
-    <section class="py-32 md:py-52 text-center bg-black relative z-20 border-t border-white/5">
-        <div class="max-w-5xl mx-auto px-6 md:px-10">
-            <h2 class="canter-text text-5xl md:text-[8rem] mb-8 uppercase">Ready for <br> The Unreal?</h2>
-            <p class="font-playfair italic text-lg md:text-2xl text-zinc-500 mb-16 max-w-xl mx-auto leading-relaxed opacity-60">
-                The next story your circle won't believe begins at altitude.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-8 md:gap-12 px-6">
-                <button onclick="openPortal('general')" class="shimmer-btn px-10 md:px-20 py-5 md:py-7 text-black font-bold uppercase tracking-[0.3em] text-[10px] md:text-[11px]">
-                    Allocation
-                </button>
-                <button onclick="openPortal('general')" class="border border-white/10 px-10 md:px-20 py-5 md:py-7 text-zinc-400 font-bold uppercase tracking-[0.3em] text-[10px] md:text-[11px] hover:text-white hover:border-white transition-all duration-700">
-                    Concierge
-                </button>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="py-20 bg-black border-t border-white/5 text-center text-zinc-700 relative z-20">
         <div class="max-w-6xl mx-auto px-6 md:px-10">
             <div class="canter-text text-4xl md:text-5xl text-gold-dark/40 mb-10">SKY PARTY™</div>
-            
-            <!-- 5 Core Trust Links -->
-            <div class="flex flex-wrap justify-center gap-6 md:gap-10 mb-10 opacity-70 text-[8px] md:text-[9px] uppercase tracking-[0.4em] font-montserrat">
-                <a href="about.html" class="hover:text-gold transition-colors">About</a>
-                <a href="how this works.html" class="hover:text-gold transition-colors">The Ascent</a>
-                <a href="legal.html" class="hover:text-gold transition-colors">Legal</a>
-                <a href="privacy.html" class="hover:text-gold transition-colors">Privacy</a>
-                <a href="https://wa.me/+2349167621703" class="hover:text-gold transition-colors">Concierge</a>
-            </div>
-
             <p class="text-[8px] md:text-[9px] leading-[2.8] max-w-4xl mx-auto mb-16 font-light uppercase tracking-[0.3em] opacity-30">
                 Sky Party™ operates as an event curation atelier. Private aviation logistics are facilitated through third-party NCAA-licensed operators exclusively. Operational confirmation occurs 10 to 15 days post-payment sequence.
             </p>
@@ -445,41 +374,135 @@
     </footer>
 
     <script>
-        // --- 1. CONNECTOR ATTRIBUTION SYSTEM ---
-        function getConnectorCode() {
-            const params = new URLSearchParams(window.location.search);
-            const code = params.get("c") || localStorage.getItem("connector") || "DIRECT";
-            localStorage.setItem("connector", code);
-            return code;
-        }
-        // Initialize on load to ensure capture
-        getConnectorCode();
+        // --- 1. DROP-IN JS HELPER (VERBATIM CONTRACT) ---
+        const SkyTracker = (() => {
 
-        // --- 2. LUXURY MOBILE MENU LOGIC ---
+            const API_URL = "https://attribution.15thdlogistics.workers.dev/";
+
+            // =========================
+            // INIT CONNECTOR
+            // =========================
+            function initConnector() {
+                const url = new URL(window.location.href);
+                const ref = url.searchParams.get("ref");
+
+                if (ref) {
+                    localStorage.setItem("connectorRef", ref);
+                }
+            }
+
+            // =========================
+            // GET CONNECTOR
+            // =========================
+            function getConnector() {
+                return localStorage.getItem("connectorRef") || "DIRECT";
+            }
+
+            // =========================
+            // SESSION ID
+            // =========================
+            function getSessionId() {
+                let id = localStorage.getItem("sessionId");
+                if (!id) {
+                    id = crypto.randomUUID();
+                    localStorage.setItem("sessionId", id);
+                }
+                return id;
+            }
+
+            // =========================
+            // CORE TRACKER
+            // =========================
+            async function track(eventType, data = {}) {
+                const payload = {
+                    eventType,
+                    connectorRef: getConnector(),
+                    sessionId: getSessionId(),
+                    timestamp: new Date().toISOString(),
+                    page: window.location.pathname,
+
+                    // spread optional data
+                    ...data
+                };
+
+                try {
+                    await fetch(API_URL, {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify(payload)
+                    });
+                } catch (err) {
+                    console.warn("SkyTracker failed:", err);
+                }
+            }
+
+            // =========================
+            // PREDEFINED EVENTS
+            // =========================
+            function pageView() {
+                track("PAGE_VIEW");
+            }
+
+            function portalOpen(experienceType) {
+                track("PORTAL_OPEN", { experienceType });
+            }
+
+            function checkoutStarted(tier) {
+                track("CHECKOUT_STARTED", {
+                    experienceType: tier.experienceType || "unknown",
+                    tierId: tier.id,
+                    tierName: tier.name,
+                    totalAmount: tier.count * tier.rate,
+                    currency: "USD"
+                });
+            }
+
+            function paymentSubmitted(refCode) {
+                track("PAYMENT_SUBMITTED", {
+                    refCode
+                });
+            }
+
+            return {
+                initConnector,
+                track,
+                pageView,
+                portalOpen,
+                checkoutStarted,
+                paymentSubmitted
+            };
+
+        })();
+
+        // --- USAGE ---
+        SkyTracker.initConnector();
+        SkyTracker.pageView();
+
+        // UI Logic
         function toggleMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('opacity-0');
             menu.classList.toggle('pointer-events-none');
         }
 
-        // --- 3. EXPERIENCE-SPECIFIC PORTAL LOGIC ---
-        function openPortal(type = 'sky-date') {
+        function openPortal(type = 'general') {
             const slider = document.getElementById('portal-slider');
             const overlay = document.getElementById('slider-overlay');
             const frame = document.getElementById('portal-frame');
             
-            const connector = getConnectorCode();
+            // Contract Call
+            SkyTracker.portalOpen(type);
             
             const routes = {
-                "sky-date": "checkout_sky_date.html", // Replaced external domain with local file for preview capability, standard is "https://checkout.sky-party.pages.dev/sky-date"
-                "date": "checkout_sky_date.html",
-                "owambe": "https://checkout.sky-party.pages.dev/owambe",
-                "custom": "https://checkout.sky-party.pages.dev/custom",
-                "secret": "https://checkout.sky-party.pages.dev/secret",
-                "general": "checkout_sky_date.html"
+                custom: "custom.html",
+                sky_date: "sky date.html",
+                owambe: "owambe.html",
+                secret: "secret.html",
+                general: "invite.html"
             };
 
-            frame.src = `${routes[type] || routes["general"]}?c=${connector}`;
+            const connectorRef = localStorage.getItem("connectorRef") || "DIRECT";
+            frame.src = (routes[type] || routes.general) + "?ref=" + connectorRef;
 
             slider.classList.add('active');
             overlay.classList.add('active');
@@ -490,21 +513,13 @@
             const slider = document.getElementById('portal-slider');
             const overlay = document.getElementById('slider-overlay');
             const frame = document.getElementById('portal-frame');
-            
             slider.classList.remove('active');
             overlay.classList.remove('active');
             document.body.style.overflow = 'auto';
-            
-            setTimeout(() => {
-                frame.src = "";
-            }, 600);
+            setTimeout(() => { frame.src = ""; }, 600);
         }
 
-        // --- 4. OPTIMIZED SCROLL REVEAL LOGIC ---
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-            
-            // Hero Reveal
             const heroSection = document.getElementById('hero-reveal');
             const heroContent = document.getElementById('hero-content');
             if (heroSection && heroContent) {
@@ -513,56 +528,28 @@
                     const progress = Math.min(Math.max(-heroRect.top / (heroSection.offsetHeight * 0.6), 0), 1);
                     heroContent.style.transform = `translateY(${progress * -80}px) scale(${1 - (progress * 0.1)})`;
                     heroContent.style.opacity = 1 - (progress * 1.5);
-                } else {
-                    heroContent.style.transform = 'translateY(0) scale(1)';
-                    heroContent.style.opacity = 1;
-                }
-            }
-
-            // Post-Protocol Reveal
-            const revealSec = document.getElementById('post-protocol-reveal');
-            const revealContent = document.getElementById('post-protocol-content');
-            if (revealSec && revealContent) {
-                const revealRect = revealSec.getBoundingClientRect();
-                if (revealRect.top <= window.innerHeight && revealRect.bottom >= 0) {
-                    const viewportCenter = window.innerHeight / 2;
-                    const sectionCenter = revealRect.top + (revealRect.height / 2);
-                    const distance = viewportCenter - sectionCenter;
-                    const progress = Math.min(Math.max(Math.abs(distance) / (revealRect.height / 1.5), 0), 1);
-                    
-                    revealContent.style.transform = `scale(${1.1 - (progress * 0.1)})`;
-                    revealContent.style.opacity = 1 - progress;
                 }
             }
         };
 
         window.addEventListener('scroll', handleScroll, { passive: true });
 
-        // --- 5. VIDEO AUTO-PLAY OBSERVER (MOBILE FIX) ---
         const videoObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 const video = entry.target.querySelector('video');
-                if (!video) return;
-
-                if (entry.isIntersecting) {
-                    video.play().catch(err => {
-                        console.log("Autoplay blocked:", err);
-                    });
-                    entry.target.classList.add('is-visible');
-                } else {
-                    video.pause();
-                    entry.target.classList.remove('is-visible');
+                if (video) {
+                    if (entry.isIntersecting) {
+                        video.play().catch(() => {});
+                    } else {
+                        video.pause();
+                    }
                 }
             });
-        }, {
-            threshold: 0.2
-        });
+        }, { threshold: 0.2 });
 
         document.addEventListener('DOMContentLoaded', () => {
-            const cards = document.querySelectorAll('.experience-card');
-            cards.forEach(card => videoObserver.observe(card));
+            document.querySelectorAll('.experience-card').forEach(card => videoObserver.observe(card));
         });
     </script>
-
 </body>
 </html>
